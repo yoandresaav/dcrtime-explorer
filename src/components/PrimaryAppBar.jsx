@@ -16,6 +16,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import HomeIcon from '@material-ui/icons/Home';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import {Link} from 'react-router-dom';
 
@@ -191,16 +192,21 @@ export default function PrimarySearchAppBar() {
 
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="home" color="inherit" component={Link} to='/'>  
-              <HomeIcon />
-            </IconButton>
-            
-            <IconButton aria-label="firm document" color="inherit" component={Link} to='/firm'>
-              <BorderColorIcon />
-            </IconButton>
-            <IconButton aria-label="check document" color="inherit" component={Link} to={'/check'}>
-              <AssignmentTurnedInIcon />
-            </IconButton>
+            <Tooltip title="Inicio">
+              <IconButton aria-label="home" color="inherit" component={Link} to='/'>  
+                <HomeIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Firmar">
+              <IconButton aria-label="firm document" color="inherit" component={Link} to='/firm'>
+                <BorderColorIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Comprobar">
+              <IconButton aria-label="check document" color="inherit" component={Link} to={'/check'}>
+                <AssignmentTurnedInIcon />
+              </IconButton>
+            </Tooltip>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
@@ -213,7 +219,6 @@ export default function PrimarySearchAppBar() {
               <MoreIcon />
             </IconButton>
           </div>
-          
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
@@ -221,11 +226,3 @@ export default function PrimarySearchAppBar() {
     </div>
   );
 }
-
-/**
-
-
-
-
-
- */

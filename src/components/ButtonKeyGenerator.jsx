@@ -1,4 +1,6 @@
 import React from 'react'
+import Button from '@material-ui/core/Button';
+
 import {
   generateKey, exportPrivateCryptoKey, exportPublicCryptoKey
 } from '../helpers/utils-keys'
@@ -18,7 +20,9 @@ const ButtonKeyGenerator = ({addKeys}) => {
     addKeys(store)
   }
   return (
-    <button onClick={onClick} type="button">Genera llaves</button>
+    <Button variant="contained" color="secondary" onClick={onClick} >
+      Key generator
+    </Button>
   )
 }
 

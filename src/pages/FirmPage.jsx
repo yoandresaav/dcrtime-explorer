@@ -66,8 +66,6 @@ const FirmPage = () => {
   //var uint8array = new TextEncoder().encode(string);
   //var string = new TextDecoder(encoding).decode(uint8array);
   const onLastStep = async () => {
-    alert('Ultimo paso')
-
     const privateKey = storeKey.key.privateKey
     const generatedFiles = await Promise.all( data.files.map( async file => {
       const digest = file.digest

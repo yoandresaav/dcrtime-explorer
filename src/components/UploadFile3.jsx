@@ -1,6 +1,9 @@
 import React, {useMemo} from 'react';
 import {useDropzone} from 'react-dropzone';
 
+import ListFile from '../components/ListFile'
+import ItemFile from '../components/ItemFile'
+
 import {createDigest} from '../helpers/create-digest'
 
 const baseStyle = {
@@ -72,12 +75,12 @@ const UploadFile3 = ({ files, updateForm }) => {
 
   
   const showFiles = files.map(file => (
-    <li key={file.path}>
-      {file.path} - {bytesToSize(file.size)} bytes <br />
-      <br />
-      <br />
-      {file.digest} <br />
-    </li>
+    <ItemFile
+      key={file.digest}
+      name={file.path}
+      size={bytesToSize(file.size)}
+      digest={file.digest}
+    />
   ));
 
   function bytesToSize(bytes) {
@@ -95,7 +98,9 @@ const UploadFile3 = ({ files, updateForm }) => {
       </div>
       {(files.length > 0) &&<aside>
         <h4>Files</h4>
-        <ul>{showFiles}</ul>
+        <ListFile>
+          <ul>{showFiles}</ul>
+        </ListFile>
       </aside>}
       
     </section>

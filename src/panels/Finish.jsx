@@ -6,7 +6,7 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: '50ch',
+    minWidth: '120ch',
   },
   media: {
     height: 0,
@@ -44,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 10,
     width: '80%',
     wordWrap: 'break-word'
+  },
+  margins: {
+    marginTop: 20,
+    outline: 'none',
   }
 }));
 
@@ -67,50 +71,43 @@ const PanelFinish = ({data, propsKey}) => {
           <Typography variant="body1" color="textSecondary" component="p">
             Email: {data.email}
           </Typography>
-          <Typography variant="body1" color="textSecondary" component="p">
-            Digest del Documento: dskfklsjdkfj
-          </Typography>
-
-          <br />
-          <br />
-          <br />
           <br />
           
           {data.files.map((file, index) => (
             <Card className={classes.card}>
-              <CardHeader>
-                {file.name} <br />
-              </CardHeader  >
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {file.digest} <br />
-                {file.digestFirmed} <br />
-              </Typography>
-              <textarea value={file.plainFirmed}>
-              </textarea>
-            </CardContent>
+              <CardHeader
+                title={ `${file.name}` }
+                subheader={file.size}
+              />
+              <CardContent>
+                <TextField 
+                  label="Digest del Documento"
+                  variant="outlined"
+                  fullWidth
+                  value={file.digest}
+                  className={clsx(classes.margins)}
+                />
+                <TextField 
+                  label="Digest Firmado del Documento"
+                  variant="outlined"
+                  fullWidth
+                  value={file.digestFirmed}
+                  className={clsx(classes.margins)}
+                />
+                <TextField 
+                  label="Documento Firmado"
+                  rows={8}
+                  variant="outlined"
+                  multiline
+                  value={file.plainFirmed}
+                  className={clsx(classes.margins)}
+                  fullWidth
+                />
+              </CardContent>
             </Card>
 
           ))}
 
-          
-          
-          
-        <br />
-
-        <Card className={classes.root}>
-          <CardHeader>
-
-          </CardHeader>
-          <CardContent>
-            
-
-            <Typography variant="body2" color="textSecondary" component="p">
-              This impressive paella is a perfect party dish and a fun meal to cook together with your
-              guests. Add 1 cup of frozen peas along with the mussels, if you like.
-            </Typography>
-          </CardContent>
-        </Card>
       </Grid>
     </Grid>
   )

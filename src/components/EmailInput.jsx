@@ -25,6 +25,18 @@ const useStyles = makeStyles((theme) => ({
 
 const EmailInput = ({data, updateForm}) => {
   const classes = useStyles();
+
+  React.useEffect(() => {
+    console.log(data)
+  }, [data.email])
+
+  const validateEmail = () => {
+    const email = data.email
+    if (email === '') return false
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return !re.test(String(email).toLowerCase());
+  }
+
   return (
     <FormControl className={clsx(classes.textField)}>
       <TextField
@@ -34,6 +46,7 @@ const EmailInput = ({data, updateForm}) => {
         autoComplete="off"
         value={data.email}
         name="email"
+        error={ validateEmail() }
         onChange={ (e) => { updateForm({[e.target.name]: e.target.value }) } }
         InputProps={{
           endAdornment: (

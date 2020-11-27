@@ -15,8 +15,8 @@ const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center" className={classes.root}>
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        decred
+      <Link color="inherit" href="https://github.com/yoandresaav/decrtime-explorer">
+        Available in Github
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
