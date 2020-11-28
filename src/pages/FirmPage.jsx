@@ -116,6 +116,28 @@ const FirmPage = () => {
     }
   }
 
+  const createTask = async () => {
+    const url = 'http://url';
+    const json = JSON.stringify({
+      email: '',
+      titulo: 'LibroEjemplo.pdf',
+      size: 'en megabyte',
+      digestFirmed: 'Digest del documento firmado con la clave privada',
+      digest: 'Digest del documento sin firmar',
+    })
+    let response = null;
+    try {
+       response = await axios.post(url, json);
+      
+    } catch (error) {
+      console.error();
+      return;
+    }
+
+    //if (response.status)
+
+  }
+
   const resetData = () => {
     setData(initialState)
   }
