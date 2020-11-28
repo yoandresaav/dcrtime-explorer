@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,7 +8,6 @@ import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -17,8 +16,9 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import HomeIcon from '@material-ui/icons/Home';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import { useHistory } from "react-router-dom";
 import {Link} from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -59,6 +59,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  loadingIcon: {
+    padding: theme.spacing(1),
+    color: theme.palette.common.white,
+  },
   inputRoot: {
     color: 'inherit',
   },
@@ -69,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '40ch',
+      width: '70ch',
     },
   },
   sectionDesktop: {
@@ -89,6 +93,8 @@ const useStyles = makeStyles((theme) => ({
 export default function PrimarySearchAppBar() {
 
   const classes = useStyles();
+  const history = useHistory();
+  const [loading, setLoading] = useState(false)
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -112,6 +118,23 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const redirectPage = (digest) => {
+    history.push(`/check/${digest}`)
+  }
+
+  const keyPress = e => {
+    const digest = e.target.value
+    if(e.keyCode == 13){
+      redirectPage(digest)
+    }
+  }
+
+  const onPaste = e => {
+    console.log(e.clipboardData.getData('Text'));
+    const digest = e.clipboardData.getData('Text')
+    redirectPage(digest)
+  }
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -178,7 +201,11 @@ export default function PrimarySearchAppBar() {
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
+              {(loading) ?
+                <CircularProgress color="secondary" className={classes.loadingIcon} />
+                :
+                <SearchIcon />
+              }
             </div>
             <InputBase
               placeholder="Search key…"
@@ -187,6 +214,8 @@ export default function PrimarySearchAppBar() {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onKeyDown={keyPress}
+              onPaste={onPaste}
             />
           </div>
 

@@ -37,7 +37,6 @@ const rejectStyle = {
 
 const UploadFile3 = ({ files, updateForm }) => {
 
-  
   const onDrop = React.useCallback( async acceptedFiles => {
     // Add digest to file 
     const copyFiles = await Promise.all( acceptedFiles.map( async (file) => {
@@ -71,6 +70,8 @@ const UploadFile3 = ({ files, updateForm }) => {
 
   const containerStyle = {
     width: '100%',
+    minWidth: '80ch',
+    display: 'block',
   }
 
   

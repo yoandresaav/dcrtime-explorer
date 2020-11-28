@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +8,10 @@ import 'fontsource-roboto';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import {signData} from '../helpers/utils-keys'
+import axios from 'axios';
+import Snackbar from '@material-ui/core/Snackbar';
+import { useLocation } from 'react-router-dom';
+import Notification from '../messages/Notification';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,8 +41,69 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const CheckPage = () => {
-  const classes = useStyles()
+const CheckPage = (props) => {
+  
+  const classes = useStyles();
+  const location = useLocation();
+  const [result, setResult] = useState(null);
+  const [openBadDigest, setOpenBadDigest] = useState(false)
+
+  const handleCloseBadDigest = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpenBadDigest(false);
+  }
+
+  console.log('PARAMS: ', props.match.params.digest)
+
+  const callApi = async () => {
+    console.log('Llamanado a callApi')
+    const digest = props.match.params.digest;
+    
+    if (digest.length !== 64){
+      setResult(null)
+      setOpenBadDigest(true)
+      return
+    }
+    
+    const url = 'https://time-testnet.decred.org:59152/v2/verify/batch'
+    const json = JSON.stringify({
+      "id":"dcrtime cli",
+      "digests":[
+        digest
+        ]
+    })
+    let response = null;
+    try {
+      response = await axios.post(url, json)
+    } catch (e) {
+      console.error(e)
+      alert(e)
+      return
+    }
+    setResult(response.data)
+  }
+
+  useEffect(()=> {
+    callApi()
+  }, [location])
+
+  if (!result) return <div>
+    <Notification 
+      open={openBadDigest}
+      onClose={handleCloseBadDigest}
+      message={'No es un digest válido'}
+      severity={"error"}
+    />
+  </div>
+
+  console.log('DIGESTS: ', result.digests)
+  result.digests.map((r) => {
+    console.log(r.digest)
+  })
+
   return (
     <Grid container justify="center">
       <Grid item className={clsx(classes.root, classes.margin)}>
@@ -49,9 +114,34 @@ const CheckPage = () => {
           <Typography component="p" className={classes.document}>
             Veniam est commodo eu aliquip do est culpa aliqua do quis. Voluptate velit exercitation do magna magna consectetur laborum ipsum. Voluptate deserunt cillum velit pariatur aute cupidatat sint ex velit. Anim labore qui elit dolore id anim commodo elit fugiat anim elit. Sint pariatur reprehenderit qui do enim. Minim nostrud nulla ullamco minim non voluptate laboris elit minim cupidatat.
           </Typography>
-          <Grid item className={clsx(classes.grid)} >
+          <Grid item className={clsx(classes.grid)} ></Grid>
+            {result.digests.map((res, index) => (
+              <Fragment key={index}>
+                <h4>{res.digest}</h4>
+                <p>{res.result}</p>
+                {/* Resultado Inválido */}
+                {(res.result === 0) && 
+                <div>Resultado Inválido</div>}
 
-          </Grid>
+                {/* Resultado Válido */}
+                {(res.result === 1) && 
+                <div>Resultado Success</div>}
+
+                {/* Result exists in server */}
+                {(res.result === 2) && 
+                <div>Resultado Exist in Server</div>}
+
+                {/* Result exists in server */}
+                {(res.result === 3) && 
+                <div>Resultado not Exist in Server</div>}
+
+                {/* Result exists in server */}
+                {(res.result === 4) && 
+                <div>Se ha desactivado la verificacion</div>}
+              </Fragment>
+            ))}
+            
+          
         </Card>
       </Grid>
     </Grid>

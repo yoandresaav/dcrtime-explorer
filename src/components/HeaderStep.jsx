@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
   instructions: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
     width: '100%',
     minHeight: '70ch',
     [theme.breakpoints.up('md')]: {

@@ -11,6 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {signData} from '../helpers/utils-keys'
 import {digestPayload} from '../helpers/create-digest'
 
+import axios from 'axios';
+
 import HeaderStep from '../components/HeaderStep';
 
 const initialKeyValue = {
@@ -63,8 +65,6 @@ const FirmPage = () => {
     setData(prevData => ({ ...prevData, ...newData }))
   }
 
-  //var uint8array = new TextEncoder().encode(string);
-  //var string = new TextDecoder(encoding).decode(uint8array);
   const onLastStep = async () => {
     const privateKey = storeKey.key.privateKey
     const generatedFiles = await Promise.all( data.files.map( async file => {
@@ -95,7 +95,29 @@ const FirmPage = () => {
 
 
     // TODO: Enviar al servidor
+    
+    onSend()
+  }
 
+  const onSend = async () => {
+    const url ='https://time-testnet.decred.org:59152/v2/timestamp/batch'
+    const allDigest = data.files.map((f) => f.digestFirmed)
+    const json = JSON.stringify({
+        "id":"dcrtime cli",
+        "digests":[
+          "62b520983c2f2b46570f5205f09d1cb96e52822931a9a2015175dd57bc5a8914",
+        ]
+    })
+
+    const headers = { 'Content-Type': 'application/json'}
+
+    console.log('allDigest: ', allDigest)
+    try {
+      const response = await axios.post(url, json, { headers: headers })
+      console.log('Data: ', response.data)
+    } catch (error) {
+      console.error(error)
+    }
   }
   return (
     <React.Fragment>

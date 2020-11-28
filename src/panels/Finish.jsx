@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 const PanelFinish = ({data, propsKey}) => {
   const classes = useStyles()
 
-  console.log(data.files)
+  console.log('Digest firmado: ', data.files[0].digestFirmed)
 
   return (
     <Grid container direction="column" alignItems="center" justify="center">
@@ -66,7 +66,6 @@ const PanelFinish = ({data, propsKey}) => {
         <Typography variant="body4" color="textSecondary" component="p" className={classes.subtitle}>
           Recibirás un correo con los datos cuando tu documento ya este registrado
         </Typography>
-
 
           <Typography variant="body1" color="textSecondary" component="p">
             Email: {data.email}
@@ -84,14 +83,14 @@ const PanelFinish = ({data, propsKey}) => {
                   label="Digest del Documento"
                   variant="outlined"
                   fullWidth
-                  value={file.digest}
+                  defaultValue={file.digest}
                   className={clsx(classes.margins)}
                 />
                 <TextField 
                   label="Digest Firmado del Documento"
                   variant="outlined"
                   fullWidth
-                  value={file.digestFirmed}
+                  defaultValue={file.digestFirmed}
                   className={clsx(classes.margins)}
                 />
                 <TextField 
@@ -99,7 +98,7 @@ const PanelFinish = ({data, propsKey}) => {
                   rows={8}
                   variant="outlined"
                   multiline
-                  value={file.plainFirmed}
+                  defaultValue={file.plainFirmed}
                   className={clsx(classes.margins)}
                   fullWidth
                 />

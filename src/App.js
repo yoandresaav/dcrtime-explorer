@@ -25,7 +25,6 @@ const theme = createMuiTheme({
 });
 
 
-
 function App() {
   return (
     <Router>
@@ -35,7 +34,7 @@ function App() {
           <Switch>
             <Route path='/' exact component={InitPage}/>
             <Route path='/firm' component={FirmPage}/>
-            <Route path='/check' component={CheckPage}/>
+            <Route path='/check/:digest' component={CheckPage}/>
           </Switch>
           <Copyright />
         </MuiThemeProvider>
