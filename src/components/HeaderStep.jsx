@@ -41,15 +41,15 @@ function getSteps() {
   return ['Input data', 'Upload files', 'Create an ad'];
 }
 
-const HeaderStep = ({data, updateForm, propsKey, onLastStep}) => {
+const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
  
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (isLastStep()){
-      onLastStep()
+      await onLastStep()
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -60,6 +60,7 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep}) => {
 
   const handleReset = () => {
     setActiveStep(0);
+    resetData();
   };
 
   function getStepContent(step) {
@@ -93,10 +94,7 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep}) => {
       <div>
         {activeStep === steps.length ? (
           <div>
-
             <PanelFinish data={data} propsKey={propsKey} />
-
-            
             <Button onClick={handleReset} className={classes.button}>
               Reset
             </Button>

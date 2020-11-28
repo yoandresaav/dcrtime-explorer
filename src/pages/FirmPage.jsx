@@ -32,12 +32,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const initialState = {
+  email: '',
+  files: [],
+}
+
 const FirmPage = () => {
   const classes = useStyles();
-  const [data, setData] = React.useState({
-    email: '',
-    files: [],
-  })
+  const [data, setData] = React.useState(initialState)
 
   // if firm with generated key or user key
   const [useGenerateKey, setUseGenerateKey] = React.useState(true)
@@ -64,28 +66,26 @@ const FirmPage = () => {
     console.log(newData)
     setData(prevData => ({ ...prevData, ...newData }))
   }
-
+  // 
   const onLastStep = async () => {
     const privateKey = storeKey.key.privateKey
+
     const generatedFiles = await Promise.all( data.files.map( async file => {
       const digest = file.digest
-  
       var uint8array = new TextEncoder().encode(digest);
-      console.log('uint8array ', uint8array)
       
       const firmed = await signData( privateKey, uint8array )
-      const plain = Buffer.from(firmed).toString('hex') // el mero
+      const plainFirmed = Buffer.from(firmed).toString('hex') // el mero
       
-      file.plainFirmed = plain
+      // Save plain doc firmed
+      file.plainFirmed = plainFirmed
 
       // Generate hash256 from firmed document
-      const digestFirmed = await digestPayload(plain)
+      const digestFirmed = digestPayload(plainFirmed)
 
+      // Save digest firmed
       file.digestFirmed = digestFirmed
       
-      console.log('Firmed ', plain)
-      console.log('El digest es ', digestFirmed)
-
       return file
     }))
 
@@ -93,25 +93,21 @@ const FirmPage = () => {
       files: generatedFiles,
     })
 
-
     // TODO: Enviar al servidor
-    
-    onSend()
+    await onSend();
   }
 
   const onSend = async () => {
     const url ='https://time-testnet.decred.org:59152/v2/timestamp/batch'
     const allDigest = data.files.map((f) => f.digestFirmed)
-    const json = JSON.stringify({
-        "id":"dcrtime cli",
-        "digests":[
-          "62b520983c2f2b46570f5205f09d1cb96e52822931a9a2015175dd57bc5a8914",
-        ]
-    })
-
-    const headers = { 'Content-Type': 'application/json'}
-
     console.log('allDigest: ', allDigest)
+    const json = JSON.stringify({
+      "id":"dcrtime cli",
+      "digests": [...allDigest],
+    })
+      
+    // "62b520983c2f2b46570f5205f09d1cb96e52822931a9a2015175dd57bc5a8914",
+    const headers = { 'Content-Type': 'application/json'}
     try {
       const response = await axios.post(url, json, { headers: headers })
       console.log('Data: ', response.data)
@@ -119,6 +115,11 @@ const FirmPage = () => {
       console.error(error)
     }
   }
+
+  const resetData = () => {
+    setData(initialState)
+  }
+
   return (
     <React.Fragment>
       <Grid container justify="center">
@@ -128,6 +129,7 @@ const FirmPage = () => {
             updateForm={updateForm} 
             propsKey={propsKey}
             onLastStep={onLastStep}
+            resetData={resetData}
           />
         </Card>
       </Grid>

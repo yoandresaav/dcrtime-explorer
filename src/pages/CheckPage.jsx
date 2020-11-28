@@ -59,7 +59,6 @@ const CheckPage = (props) => {
   console.log('PARAMS: ', props.match.params.digest)
 
   const callApi = async () => {
-    console.log('Llamanado a callApi')
     const digest = props.match.params.digest;
     
     if (digest.length !== 64){

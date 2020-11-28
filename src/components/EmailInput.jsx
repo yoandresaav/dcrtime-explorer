@@ -37,6 +37,14 @@ const EmailInput = ({data, updateForm}) => {
     return !re.test(String(email).toLowerCase());
   }
 
+  const isDisabled = () => {
+    if (data.email !== 'undefined') return  true
+    if (data.email.length === 0){
+      return true
+    } 
+    return false
+  }
+
   return (
     <FormControl className={clsx(classes.textField)}>
       <TextField
@@ -53,7 +61,7 @@ const EmailInput = ({data, updateForm}) => {
             <IconButton
               aria-label="toggle password visibility"
               edge="end"
-              disabled={ data.email.length === 0 }
+              disabled={isDisabled()}
               onClick={ (e) => { updateForm({email: ''}) } }
             >
               <HighlightOffIcon />

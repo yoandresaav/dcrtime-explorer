@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     maxWidth: '110ch',
     padding: theme.spacing(3),
-    minHeight: '90ch',
+    minHeight: '80ch',
   },
   margin: {
     margin: theme.spacing(3),

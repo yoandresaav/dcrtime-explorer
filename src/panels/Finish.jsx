@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { Box, Grid, Button, Paper, Typography, Card, CardHeader, CardContent, FormControl, Input, TextareaAutosize, TextField, FormHelperText, InputLabel, InputAdornment, IconButton } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
+import CardFinish from '../components/CardFinish';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
   card: {
     padding: 4,
     marginBottom: 10,
-    width: '80%',
     wordWrap: 'break-word'
   },
   margins: {
@@ -54,8 +54,6 @@ const useStyles = makeStyles((theme) => ({
 const PanelFinish = ({data, propsKey}) => {
   const classes = useStyles()
 
-  console.log('Digest firmado: ', data.files[0].digestFirmed)
-
   return (
     <Grid container direction="column" alignItems="center" justify="center">
       <Grid item className={clsx(classes.instruction, classes.root)}>
@@ -63,48 +61,20 @@ const PanelFinish = ({data, propsKey}) => {
           Tu documento se está guardando
         </Typography>
 
-        <Typography variant="body4" color="textSecondary" component="p" className={classes.subtitle}>
+        <Typography variant="body2" color="textSecondary" component="p" className={classes.subtitle}>
           Recibirás un correo con los datos cuando tu documento ya este registrado
         </Typography>
 
           <Typography variant="body1" color="textSecondary" component="p">
             Email: {data.email}
           </Typography>
-          <br />
-          
-          {data.files.map((file, index) => (
-            <Card className={classes.card}>
-              <CardHeader
-                title={ `${file.name}` }
-                subheader={file.size}
-              />
-              <CardContent>
-                <TextField 
-                  label="Digest del Documento"
-                  variant="outlined"
-                  fullWidth
-                  defaultValue={file.digest}
-                  className={clsx(classes.margins)}
-                />
-                <TextField 
-                  label="Digest Firmado del Documento"
-                  variant="outlined"
-                  fullWidth
-                  defaultValue={file.digestFirmed}
-                  className={clsx(classes.margins)}
-                />
-                <TextField 
-                  label="Documento Firmado"
-                  rows={8}
-                  variant="outlined"
-                  multiline
-                  defaultValue={file.plainFirmed}
-                  className={clsx(classes.margins)}
-                  fullWidth
-                />
-              </CardContent>
-            </Card>
 
+          {/* Card  */}
+          {data.files.map((file, index) => (
+            <CardFinish 
+              key={index}
+              file={file}
+            />
           ))}
 
       </Grid>
