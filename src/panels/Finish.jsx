@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
 const PanelFinish = ({data, propsKey}) => {
   const classes = useStyles()
 
+
+  console.log('La data es ', data)
+
   return (
     <Grid container direction="column" alignItems="center" justify="center">
       <Grid item className={clsx(classes.instruction, classes.root)}>
@@ -65,17 +68,17 @@ const PanelFinish = ({data, propsKey}) => {
           Recibirás un correo con los datos cuando tu documento ya este registrado
         </Typography>
 
-          <Typography variant="body1" color="textSecondary" component="p">
-            Email: {data.email}
-          </Typography>
+        <Typography variant="body1" color="textSecondary" component="p">
+          Email: {data.email}
+        </Typography>
 
-          {/* Card  */}
-          {data.files.map((file, index) => (
-            <CardFinish 
-              key={index}
-              file={file}
-            />
-          ))}
+        {/* Card  */}
+        {data.files.map((file, index) => (
+          <CardFinish 
+            key={index}
+            file={file}
+          />
+        ))}
 
       </Grid>
     </Grid>

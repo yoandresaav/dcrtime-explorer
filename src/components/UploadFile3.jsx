@@ -4,7 +4,8 @@ import {useDropzone} from 'react-dropzone';
 import ListFile from '../components/ListFile'
 import ItemFile from '../components/ItemFile'
 
-import {createDigest} from '../helpers/create-digest'
+import {createDigest} from '../helpers/create-digest';
+import {bytesToSize} from '../helpers/utils-file';
 
 const baseStyle = {
   flex: 1,
@@ -83,13 +84,6 @@ const UploadFile3 = ({ files, updateForm }) => {
       digest={file.digest}
     />
   ));
-
-  function bytesToSize(bytes) {
-    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-    if (bytes == 0) return '0 Byte';
-    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
- }
 
   return (
     <section className="container" style={containerStyle}>

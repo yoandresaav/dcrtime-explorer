@@ -7,6 +7,9 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import ButtonKeyGenerator from '../components/ButtonKeyGenerator'
 import ChooseHaveKey from '../components/ChooseHaveKey';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import GetAppIcon from '@material-ui/icons/GetApp';
+
+import {downloadZip, generateZip} from '../helpers/utils-file';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,12 +42,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 /**
-
-
 Son dos procesos 
 1 - Si tiene clave privada TODO
 2 - Generar las claves privadas 
-
  */
 
 const privateMask = '00000000000-00000000000-00000000000-00000000000-00000000000'
@@ -57,10 +57,6 @@ const Panel_3 = ({propsKey}) => {
   const addKeys = (store) => { propsKey.setStoreKey(store) }
   const onClear = () => { propsKey.setStoreKey(propsKey.initialKeyValue) }
   
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-  
   const handleClickShowKey = () => {
     setShowKey(prevValue => (!prevValue))
   }
@@ -68,6 +64,12 @@ const Panel_3 = ({propsKey}) => {
   const onChangeChecked = e => {
     propsKey.setUseGenerateKey(e.target.checked)
   }
+
+  const onDownloadClick = async () => {
+    const zipFile = await generateZip(propsKey.storeKey.pemPrivate, propsKey.storeKey.pemPublic)
+    downloadZip('pem.zip', zipFile)
+  }
+
   return (
     <Grid container direction="column"  justify="center" >
 
@@ -83,26 +85,37 @@ const Panel_3 = ({propsKey}) => {
             <ButtonKeyGenerator addKeys={addKeys} />}
           
           <div className={classes.grow} />
+
+          <Tooltip title="Descargar Private Key">
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={onDownloadClick}
+            >
+              <GetAppIcon />
+            </IconButton>
+            
+          </Tooltip>
           
+          {/* Visibility Eyes */}
           <Tooltip title={showKey ? "Hide" : "Show"}>
             <IconButton
               aria-label="toggle password visibility"
               onClick={handleClickShowKey}
-              onMouseDown={handleMouseDownPassword}
             >
               {showKey ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           </Tooltip>
           
+          {/* Clear icono */}
           {(propsKey.useGenerateKey) && 
-          <Tooltip title="Clear">
-            <IconButton
-              aria-label="clear keys"
-              onClick={onClear}
-            >
-              <HighlightOffIcon /> 
-            </IconButton>
-          </Tooltip>}
+            <Tooltip title="Clear">
+              <IconButton
+                aria-label="clear keys"
+                onClick={onClear}
+              >
+                <HighlightOffIcon /> 
+              </IconButton>
+            </Tooltip>}
           
         </div>
 
@@ -140,7 +153,6 @@ const Panel_3 = ({propsKey}) => {
                   label="Private Key"
                   value={showKey ? propsKey.userPrivateKey : propsKey.userPrivateKey ? privateMask : ''}
                   onChange={ (e) => { propsKey.setUserPrivateKey(e.target.value) } }
-                  maxWidth
                 />
               </FormControl>
         }

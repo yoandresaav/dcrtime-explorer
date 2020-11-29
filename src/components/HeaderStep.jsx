@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -46,12 +46,15 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
+  const [loading, setLoading] = useState(false);
 
   const handleNext = async () => {
+    setLoading(true)
     if (isLastStep()){
       await onLastStep()
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setLoading(false)
   };
 
   const handleBack = () => {
@@ -104,13 +107,14 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
             <div className={classes.instructions}>{getStepContent(activeStep)}</div>
 
             <div className={classes.buttonDiv}>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+              <Button disabled={activeStep === 0 || loading} onClick={handleBack} className={classes.button}>
                 Back
               </Button>
               <Button
                 variant="contained"
                 color="primary"
                 onClick={handleNext}
+                disabled={loading}
                 className={classes.button}
               >
                 {isLastStep() ? 'Finish' : 'Next'}

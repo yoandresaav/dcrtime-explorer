@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: 'block',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'gray',
+    paddingBottom: theme.spacing(3),
   },
   parraf: {
     paddingBottom: theme.spacing(2),
@@ -28,10 +30,10 @@ const Panel_1 = ({data, updateForm}) => {
     <Grid container direction="column" alignItems="center" justify="center" >
       <Grid item className={clsx(classes.root, classes.margin)}>
           <Typography variant="h4" component="h3" className={classes.title}>
-            Sello de tiempo a documentos
+            Correo de notificación
           </Typography>
           <Typography variant="subtitle1" className={classes.parraf}>
-            Introduce tu correo para recibir una notificacion conla información del documento
+            Introduce tu correo para recibir una notificacion cuando el documento firmado ya este en la cadena de bloques de Decred.
           </Typography>
         <EmailInput data={data} updateForm={updateForm} />
       </Grid>

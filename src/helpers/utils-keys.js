@@ -27,7 +27,6 @@ export const exportPrivateCryptoKey = async (key) => {
   const exportedAsBase64 = btoa(exportedAsString);
   const pemExported = `-----BEGIN PRIVATE KEY-----\n${exportedAsBase64}\n-----END PRIVATE KEY-----`;
 
-  console.log(pemExported)
   return await Promise.resolve(pemExported)
 }
 
@@ -40,7 +39,6 @@ export const exportPublicCryptoKey = async (key) => {
   const exportedAsBase64 = btoa(exportedAsString);
   const pemExported = `-----BEGIN PUBLIC KEY-----\n${exportedAsBase64}\n-----END PUBLIC KEY-----`;
 
-  console.log(pemExported)
   return await Promise.resolve(pemExported)
 }
 
@@ -54,8 +52,6 @@ export const signData = async (privateKey, data) => {
       data //ArrayBuffer of data you want to sign
   )
 
-  console.log('signature: ', signature);
-  console.log(new Uint8Array(signature));
   return await Promise.resolve(new Uint8Array(signature))
 }
 

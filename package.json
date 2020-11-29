@@ -12,6 +12,7 @@
     "axios": "^0.21.0",
     "dcrtimejs": "^0.0.5",
     "fontsource-roboto": "^3.0.3",
+    "jszip": "^3.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-dropzone": "^11.2.4",

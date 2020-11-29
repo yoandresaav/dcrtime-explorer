@@ -89,9 +89,10 @@ const FirmPage = () => {
       return file
     }))
 
-    setData({
+    setData(prevData => ({
+      ...prevData,
       files: generatedFiles,
-    })
+    }))
 
     // TODO: Enviar al servidor
     await onSend();

@@ -3,6 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, Button, Paper, Typography, Card, CardHeader, CardContent, FormControl, Input, TextareaAutosize, TextField, FormHelperText, InputLabel, InputAdornment, IconButton } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import clsx from 'clsx';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import {bytesToSize} from '../helpers/utils-file';
+import Avatar from '@material-ui/core/Avatar';
+import DescriptionIcon from '@material-ui/icons/Description';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import Tooltip from '@material-ui/core/Tooltip';
+import {downloadJson} from '../helpers/utils-file';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[500],
+    backgroundColor: '#E33E7F',
   },
   instruction: {
     paddingTop: theme.spacing(1),
@@ -42,7 +49,8 @@ const useStyles = makeStyles((theme) => ({
   card: {
     padding: 4,
     marginBottom: 10,
-    wordWrap: 'break-word'
+    wordWrap: 'break-word',
+    borderRadius: 8,
   },
   margins: {
     marginTop: 20,
@@ -51,15 +59,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const CardFinish = ({file}) => {
+const CardFinish = ({key, file}) => {
 
   const classes = useStyles()
-  console.log('El file es ', file)
+  console.log(file)
+  
+  const generateJson = () => {
+    const document = JSON.stringify({
+      name: file.name,
+      digest: file.digest,
+      digestFirmed: file.digestFirmed,
+      documentFirmed: file.plainFirmed,
+      size: file.size,
+      sizeHuman: bytesToSize(file.size),
+      generated: new Date(), 
+    }, null, 2)
+    downloadJson(`Firmed - ${file.name}.json`, document)
+  }
+
   return (
     <Card className={classes.card} variant="outlined">
       <CardHeader
-        title={ `${file.name}` }
-        subheader={file.size}
+        title={ `Archivo: ${file.name}` }
+        subheader={bytesToSize(file.size)}
+        action={
+          <Tooltip title="json format">
+            <IconButton aria-label="download json format" onClick={generateJson}>
+              <GetAppIcon />
+            </IconButton>
+          </Tooltip>
+        }
+        avatar={
+          <Avatar aria-label="recipe" className={classes.avatar}>
+            <DescriptionIcon />
+          </Avatar>
+        }
       />
       <CardContent>
         <TextField
