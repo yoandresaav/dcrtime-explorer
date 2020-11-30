@@ -1,7 +1,17 @@
-# Dcrtime Explorer
+Dcrtime Explorer
+==========
+
+[![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 
 Este proyecto fue creado en el marco del evento Blockchain Learning Challenge Latinoamerica 2020
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Detalles Técnicos
+
+- Este servicio, dcrtime and Decred usan la función hash sha256.
+- **Los archivos no se guardan en un servidor**. Usamos 
+[dcrtime](https://github.com/decred/dcrtime) como backend para guardar y anclar los hash firmados de los archivos.
+- Esta aplicación usa [dcrtimejs](https://github.com/tiagoalvesdulce/dcrtimejs) para comunicarse con las APIS de dcrtime.
 
 ## Available Scripts
 
