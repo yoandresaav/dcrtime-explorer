@@ -4,7 +4,7 @@ Dcrtime Explorer
 [![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 
 ## Resumen
-**Dcrtime Explorer es una aplicación web que combina un servicio de firmado y existencia en el tiempo de archivos digitales usando usando la blockchain de Decred.**  
+**Dcrtime Explorer es una aplicación web que combina un servicio de firmado y existencia en el tiempo de archivos digitales basado en la blockchain de Decred.**  
 Este proyecto fue creado en el marco del evento Blockchain Learning Challenge Latinoamerica 2020.
 
 ## Detalles Técnicos
