@@ -12,6 +12,8 @@ Se desarrolló usando [Create React App](https://github.com/facebook/create-reac
 - **Los archivos no se guardan en un servidor**. Usamos 
 [dcrtime](https://github.com/decred/dcrtime) como backend para guardar y anclar los hash firmados de los archivos.
 - Esta aplicación usa [dcrtimejs](https://github.com/tiagoalvesdulce/dcrtimejs) para comunicarse con las APIS de dcrtime.
+- Las llaves privadas y públicas se generan usando librerias  criptográficas nativas de los navegadores [Crypto](https://developer.mozilla.org/es/docs/Web/API/Crypto)
+- El servicio de firmado usa el algoritmo RSA-PSS para generar las llaves [Ejemplo](https://github.com/diafygi/webcrypto-examples#rsa-pss)
 
 ## Available Scripts
 
