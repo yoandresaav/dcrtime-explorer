@@ -64,7 +64,8 @@ const Panel_3 = ({propsKey}) => {
   }
   
   const onChangeChecked = e => {
-    propsKey.setUseGenerateKey(e.target.checked)
+    onClear();
+    propsKey.setUseGenerateKey(e.target.checked);
   }
 
   const onDownloadClick = async () => {
@@ -87,37 +88,39 @@ const Panel_3 = ({propsKey}) => {
             <ButtonKeyGenerator addKeys={addKeys} />}
           
           <div className={classes.grow} />
-
-          <Tooltip title="Descargar Private Key">
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={onDownloadClick}
-            >
-              <GetAppIcon />
-            </IconButton>
+            {/* Dowload Icon */}
+            {(propsKey.storeKey.pemPrivate && propsKey.storeKey.pemPublic && propsKey.useGenerateKey) &&
+              <Tooltip title="Descargar Zip Llaves">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={onDownloadClick}
+                >
+                  <GetAppIcon />
+                </IconButton>
+              </Tooltip>}
+          
+            {/* Visibility Eyes */}
+            {(propsKey.storeKey.pemPrivate) && 
+              <Tooltip title={showKey ? "Hide" : "Show"}>
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowKey}
+                >
+                  {showKey ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </Tooltip>
+            }
             
-          </Tooltip>
-          
-          {/* Visibility Eyes */}
-          <Tooltip title={showKey ? "Hide" : "Show"}>
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowKey}
-            >
-              {showKey ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-          </Tooltip>
-          
-          {/* Clear icono */}
-          {(propsKey.useGenerateKey) && 
-            <Tooltip title="Clear">
-              <IconButton
-                aria-label="clear keys"
-                onClick={onClear}
-              >
-                <HighlightOffIcon /> 
-              </IconButton>
-            </Tooltip>}
+            {/* Clear icono */}
+            {(propsKey.storeKey.pemPrivate && propsKey.storeKey.pemPublic) &&
+              <Tooltip title="Clear">
+                <IconButton
+                  aria-label="clear keys"
+                  onClick={onClear}
+                >
+                  <HighlightOffIcon /> 
+                </IconButton>
+              </Tooltip>}
           
         </div>
 
@@ -148,13 +151,38 @@ const Panel_3 = ({propsKey}) => {
           :
             <FormControl className={clsx(classes.margin)}>
               {/* User entry your private key */}
-                <UploadPrivateKey 
-                  userPrivateKey={propsKey.storeKey}
-                  setUserPrivateKey={propsKey.setStoreKey}
-                />
-                <UploadPublicKey 
-                  setUserPrivateKey={propsKey.setStoreKey}
-                />
+                {(propsKey.storeKey.pemPrivate) ?
+                  <FormControl className={clsx(classes.margin, classes.marginTop)}>
+                    <TextField
+                      multiline={true}
+                      rows={16}
+                      variant="outlined"
+                      label="Private Key"
+                      value={showKey ? propsKey.storeKey.pemPrivate : propsKey.storeKey.pemPrivate ? privateMask : ''}
+                    />
+                  </FormControl>
+                  :
+                  <UploadPrivateKey 
+                    userPrivateKey={propsKey.storeKey}
+                    setUserPrivateKey={propsKey.setStoreKey}
+                  />
+                }
+                
+                {/* Public Key */}
+                {(propsKey.storeKey.pemPublic) ?
+                  <FormControl className={clsx(classes.margin)}>
+                    <TextField 
+                      multiline={true} 
+                      rows={6} 
+                      variant="outlined" 
+                      label="Public Key" 
+                      value={propsKey.storeKey.pemPublic} />
+                  </FormControl>
+                  :
+                  <UploadPublicKey 
+                    setUserPrivateKey={propsKey.setStoreKey}
+                  />
+                }
               </FormControl>
         }
     </Grid>

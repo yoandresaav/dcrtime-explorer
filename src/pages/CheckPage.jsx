@@ -8,7 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useLocation } from 'react-router-dom';
 import Notification from '../messages/Notification';
 import {checkIfDocumentExistInDecred, isDigestFound, isDigestAnchorPending, isDigestAnchored, isDigestNotAnchored} from '../helpers/api-decred';
-
+import CheckIsDigest from '../components/CheckIsDigest';
+import CheckError from '../components/CheckError';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   grid: {
-    textAlign: 'center',
+    textAlign: 'left',
   }
 }));
 
@@ -49,36 +50,23 @@ const CheckPage = (props) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpenBadDigest(false);
   }
 
   const callApi = async () => {
     const digest = props.match.params.digest;
-    
-    if (digest.length !== 64){
+    if (!digest || digest.length !== 64){
       setResult(null)
       setOpenBadDigest(true)
       return
     }
 
     const response = await checkIfDocumentExistInDecred([digest]);
-    console.log('response.data: ', response)
     setResult(response);
   }
-
   useEffect(()=> {
     callApi()
   }, [location])
-
-  if (!result) return <div>
-    <Notification 
-      open={openBadDigest}
-      onClose={handleCloseBadDigest}
-      message={'No es un digest válido'}
-      severity={"error"}
-    />
-  </div>
 
   return (
     <Grid container justify="center">
@@ -90,27 +78,36 @@ const CheckPage = (props) => {
           <Typography component="p" className={classes.document}>
             Comprueba que el hash firmado de un documento se encuentra anclado en la blockchain de Decred. Recuerda que necesitas un hash256 de 64 caracteres de longitud.
           </Typography>
-          <Grid item className={clsx(classes.grid)} ></Grid>
             {result && result.map((res, index) => (
               <Fragment key={index}>
-                <h4>{res.digest}</h4>
-                <p>{res.result}</p>
+                <Typography component="h3">
+                  <strong>Hash:</strong> {res.digest}
+                </Typography>
                 {/* Result Success */}
                 {(isDigestAnchorPending(res)) &&
                   <div>Se encuentra en proceso de anclarse a la blockchain de Decred </div>}
 
                 {/* Result File in server */}
-                {(isDigestFound(res) && isDigestAnchored(res)) && 
-                  <div>El archivo esta anclado en la blockchain de Decred</div>}
+                {(isDigestAnchored(res)) && <CheckIsDigest res={res} />}
 
                 {/* Not anchores */}
-                {(isDigestNotAnchored(res)) && 
-                  <div>El archivo no esta anclado en la blockchain de Decred</div>}
+                {(!isDigestAnchored(res) && isDigestNotAnchored(res)) && 
+                  <CheckError title="El hash no esta anclado en la blockchain de Decred." />}
+
               </Fragment>
             ))}
             
+            {(!result) && 
+              <CheckError title="Agregue un hash Sha256 de 64 caracteres." />}
+
         </Card>
       </Grid>
+      <Notification 
+        open={openBadDigest}
+        onClose={handleCloseBadDigest}
+        message={'No es un digest válido'}
+        severity={"error"}
+      />
     </Grid>
   )
 }

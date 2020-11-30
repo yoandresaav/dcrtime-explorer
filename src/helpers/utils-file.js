@@ -75,3 +75,20 @@ export const getFileData = (file) => {
     reader.readAsDataURL(file);
   })
 }
+
+export const jsonHaveGoodFormat = json => {
+  return (
+    'name' in json &&
+    'digestOriginal' in json &&
+    'digestFirmed' in json &&
+    'documentFirmed' in json &&
+    'pemPublic' in json &&
+    'size' in json &&
+    'sizeHuman' in json &&
+    'generated' in json &&
+    !!json.name &&
+    !!json.digestOriginal &&
+    !!json.digestFirmed &&
+    !!json.documentFirmed
+  )
+}

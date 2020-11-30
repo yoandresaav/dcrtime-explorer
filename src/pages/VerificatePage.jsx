@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import {importPublicKey, verifyFirmed, str2ab, bufferToArrayBuffer} from '../helpers/utils-keys';
 import UploadComprobateJson from '../components/UploadComprobateJson';
-import {getFileData} from '../helpers/utils-file';
+import {getFileData, jsonHaveGoodFormat} from '../helpers/utils-file';
 import Notification from '../messages/Notification';
 import {initialStateMessage, errorBadFormat, errorBadFormatNotPublicKey, successLoaded} from '../helpers/const-messages';
 import {checkIfDocumentExistInDecred} from '../helpers/api-decred';
@@ -65,20 +65,17 @@ const initialStateVerificate = {
   resultDecred: null,
 }
 
-const isHaveGoodFormat = json => {
-  return (
-    'name' in json &&
-    'digestOriginal' in json &&
-    'digestFirmed' in json &&
-    'documentFirmed' in json &&
-    'pemPublic' in json
-  )
+const stateInvalidJson = {
+  step: INVALID,
+  isValidJson: false,
+  isValidFirmedDigest: false,
+  isExistInDecred: false,
+  resultDecred: false,
 }
 
 const VerificatePage = () => {
   const classes = useStyles();
 
-  const [checking, setChecking] = useState(false);
   const [checkedInfo, setCheckedInfo] = useState({
     "name": "",
     "digestOriginal": "",
@@ -142,20 +139,20 @@ const VerificatePage = () => {
       json = JSON.parse(text);
     } catch (error){
       setMessageStatus(errorBadFormat);
-      setVerificateProcess(prev => ({ ...prev, step: INVALID, isValidJson: false }));
+      setVerificateProcess(prev => ({ ...prev, ...stateInvalidJson }));
       return Promise.reject(null)
     }
 
-    const haveGoodFormat = isHaveGoodFormat(json)
+    const haveGoodFormat = jsonHaveGoodFormat(json)
     if (!haveGoodFormat){
       setMessageStatus(errorBadFormat);
-      setVerificateProcess(prev => ({ ...prev, step: INVALID, isValidJson: false }));
+      setVerificateProcess(prev => ({ ...prev, ...stateInvalidJson }));
       return Promise.reject(null)
     }
 
     if (json.pemPublic.length === 0){
       setMessageStatus(errorBadFormatNotPublicKey);
-      setVerificateProcess(prev => ({ ...prev, step: INVALID }));
+      setVerificateProcess(prev => ({ ...prev, ...stateInvalidJson }));
       return Promise.reject(null)
     }
     setVerificateProcess(prev => ({ ...prev, isValidJson: true }));
@@ -206,6 +203,7 @@ const VerificatePage = () => {
               />
               <ListaVerificate
                 verificateProcess={verificateProcess}
+                responseDecred={responseDecred}
               />
             <div className={classes.buttonDiv}>
               <Button 

@@ -33,7 +33,7 @@ export const sendDigestToDecred = async digestFirmed => {
 export const isDigestAnchored = digest =>
   !!(digest.chaininformation && digest.chaininformation.chaintimestamp);
 
-export const isDigestFound = digest => digest.result === 1;
+export const isDigestFound = digest => digest.result === 1 || digest.result === 0;
 
 export const isDigestAnchorPending = digest =>
   isDigestFound(digest) && !isDigestAnchored(digest);

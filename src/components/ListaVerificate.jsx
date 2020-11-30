@@ -9,8 +9,9 @@ import DoneIcon from '@material-ui/icons/Done';
 import CloseIcon from '@material-ui/icons/Close';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {isDigestAnchored, isDigestAnchorPending, isDigestFound} from '../helpers/api-decred';
 
-const ListaVerificate = ({verificateProcess}) => {
+const ListaVerificate = ({verificateProcess, responseDecred}) => {
 
   const switchIcon = (isDone) => {
     switch (isDone) {
@@ -31,16 +32,28 @@ const ListaVerificate = ({verificateProcess}) => {
         </IconButton>
       </ListItemSecondaryAction>)
   
-  const existsInDecred = (resultDecred) => {
+  const existsInDecred = (responseDecred) => {
     /* Valid result 0 - Success, 1 - File not found in server , 2 - No anchored in server */
-    switch (resultDecred) {
-      case 0:
-        return "En proceso de anclarse en la blockchain"
-      case 1:
-          return "El archivo se encuentra en el server"
-      default: //2
-        return "El archivo no existe en la blockchain de decred"
+    if (responseDecred && isDigestAnchored(responseDecred)){
+      return "El archivo se encuentra anclado en la blockchain de Decred"
+    } else if (responseDecred && isDigestAnchorPending(responseDecred)){
+      return "En proceso de anclarse en la blockchain de Decred"
+    } else if (responseDecred && isDigestFound(responseDecred)){
+      return "El archivo esta en proceso de anclarse en la blockchain de decred"
+    } else {
+      return "El archivo no esta anclado en la blockchain de decred"
     }
+  }
+
+  const resolveTx = digest => {
+    const {chaininformation} = digest;
+    return  {tx: chaininformation.transaction, merkle: chaininformation.merkleroot} 
+  }
+
+  console.log(responseDecred)
+
+  const ListItemLink = (props) => {
+    return <ListItem button component="a" {...props} />;
   }
 
   return (
@@ -76,10 +89,33 @@ const ListaVerificate = ({verificateProcess}) => {
           </ListItemIcon>
           <ListItemText
             primary="Comprobando existencia en la blockchain de Decred"
-            secondary={ existsInDecred(verificateProcess.resultDecred)}
+            secondary={ existsInDecred(responseDecred)}
           />
           {ShowIcon(verificateProcess.resultDecred)}
         </ListItem>
+
+        {/* Comprobate merkle transaction */}
+        {(responseDecred && isDigestAnchored(responseDecred)) &&
+          <Fragment>
+            <ListItem>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="Raiz de Merkle. Comprueba haciendo click en la transacción"
+                secondary={ resolveTx(responseDecred).merkle}
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <AssignmentIcon />
+              </ListItemIcon>
+              <ListItemLink href={`https://dcrdata.decred.org/tx/${resolveTx(responseDecred).tx}`}>
+                <ListItemText primary={`Tx: ${resolveTx(responseDecred).tx}` } />
+              </ListItemLink>
+            </ListItem>
+          </Fragment>
+        }
     </List>
   )
 }

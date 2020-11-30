@@ -36,6 +36,7 @@ function App() {
             <Route path='/' exact component={InitPage}/>
             <Route path='/firm' component={FirmPage}/>
             <Route path='/check/:digest' component={CheckPage}/>
+            <Route path='/check' component={CheckPage}/>
             <Route path='/verify' component={VerificatePage}/>
           </Switch>
           <Copyright />
