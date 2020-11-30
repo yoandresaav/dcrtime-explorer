@@ -3,8 +3,8 @@ Dcrtime Explorer
 
 [![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 
-Este proyecto fue creado en el marco del evento Blockchain Learning Challenge Latinoamerica 2020
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto fue creado en el marco del evento Blockchain Learning Challenge Latinoamerica 2020.
+Se desarrolló usando [Create React App](https://github.com/facebook/create-react-app).
 
 ## Detalles Técnicos
 
