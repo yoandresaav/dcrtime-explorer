@@ -125,13 +125,12 @@ export default function PrimarySearchAppBar() {
 
   const keyPress = e => {
     const digest = e.target.value
-    if(e.keyCode == 13){
+    if(e.keyCode === 13){
       redirectPage(digest)
     }
   }
 
   const onPaste = e => {
-    console.log(e.clipboardData.getData('Text'));
     const digest = e.clipboardData.getData('Text')
     redirectPage(digest)
   }
@@ -232,7 +231,7 @@ export default function PrimarySearchAppBar() {
               </IconButton>
             </Tooltip>
             <Tooltip title="Comprobar">
-              <IconButton aria-label="check document" color="inherit" component={Link} to={'/check'}>
+              <IconButton aria-label="check document" color="inherit" component={Link} to={'/verify'}>
                 <AssignmentTurnedInIcon />
               </IconButton>
             </Tooltip>

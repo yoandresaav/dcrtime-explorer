@@ -3,12 +3,13 @@ import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import InitPage from './pages/InitPage'
-import FirmPage from './pages/FirmPage'
-import CheckPage from './pages/CheckPage'
+import InitPage from './pages/InitPage';
+import FirmPage from './pages/FirmPage';
+import CheckPage from './pages/CheckPage';
+import VerificatePage from './pages/VerificatePage';
 
-import PrimarySearchAppBar from './components/PrimaryAppBar'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import PrimarySearchAppBar from './components/PrimaryAppBar';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Copyright from './components/Copyright'
 
@@ -35,6 +36,7 @@ function App() {
             <Route path='/' exact component={InitPage}/>
             <Route path='/firm' component={FirmPage}/>
             <Route path='/check/:digest' component={CheckPage}/>
+            <Route path='/verify' component={VerificatePage}/>
           </Switch>
           <Copyright />
         </MuiThemeProvider>

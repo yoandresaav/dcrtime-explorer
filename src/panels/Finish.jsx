@@ -1,7 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import { Box, Grid, Button, Paper, Typography, Card, CardHeader, CardContent, FormControl, Input, TextareaAutosize, TextField, FormHelperText, InputLabel, InputAdornment, IconButton } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import CardFinish from '../components/CardFinish';
 
@@ -53,10 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PanelFinish = ({data, propsKey}) => {
   const classes = useStyles()
-
-
-  console.log('La data es ', data)
-
+  const pemPublic = propsKey.storeKey.pemPublic;
   return (
     <Grid container direction="column" alignItems="center" justify="center">
       <Grid item className={clsx(classes.instruction, classes.root)}>
@@ -77,6 +74,7 @@ const PanelFinish = ({data, propsKey}) => {
           <CardFinish 
             key={index}
             file={file}
+            pemPublic={pemPublic}
           />
         ))}
 

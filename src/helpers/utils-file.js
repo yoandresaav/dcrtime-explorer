@@ -1,5 +1,8 @@
 import JSZip from "jszip";
+import {signData, str2ab} from './utils-keys';
+import {digestPayload} from '../helpers/create-digest';
 
+// util function
 const onDownload = (filename, data) => {
   let element = document.createElement('a');
   element.setAttribute('href', data);
@@ -39,4 +42,36 @@ export const bytesToSize = (bytes) => {
   if (bytes == 0) return '0 Byte';
   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
+
+// use private key to firm document
+export const firmFiles = async (files, privateKey) => {
+  return await Promise.all( files.map( async file => {
+    const digestOriginal = file.digestOriginal;
+    const uint8array = new TextEncoder().encode(digestOriginal);
+    const firmed = await signData( privateKey, uint8array );
+    const plainFirmed = Buffer.from(firmed).toString('hex');
+
+    // Save plain doc firmed
+    file.plainFirmed = plainFirmed
+
+    // Generate hash256 from firmed document
+    const digestFirmed = digestPayload(plainFirmed)
+
+    // Save digest firmed
+    file.digestFirmed = digestFirmed
+    return file
+  }))
+}
+
+// Get file from upload file
+export const getFileData = (file) => {
+  return new Promise(resolve => {
+    const reader = new FileReader()
+    reader.onload = event => {
+      var data = event.target.result.split(',')[1];
+      resolve(data)
+    }
+    reader.readAsDataURL(file);
+  })
 }

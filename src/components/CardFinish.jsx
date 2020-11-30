@@ -1,9 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, Button, Paper, Typography, Card, CardHeader, CardContent, FormControl, Input, TextareaAutosize, TextField, FormHelperText, InputLabel, InputAdornment, IconButton } from '@material-ui/core';
-import { red } from '@material-ui/core/colors';
+import { Card, CardHeader, CardContent, TextField, IconButton } from '@material-ui/core';
 import clsx from 'clsx';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {bytesToSize} from '../helpers/utils-file';
 import Avatar from '@material-ui/core/Avatar';
 import DescriptionIcon from '@material-ui/icons/Description';
@@ -59,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const CardFinish = ({key, file}) => {
+const CardFinish = ({file, pemPublic}) => {
 
   const classes = useStyles()
   console.log(file)
@@ -67,12 +65,13 @@ const CardFinish = ({key, file}) => {
   const generateJson = () => {
     const document = JSON.stringify({
       name: file.name,
-      digest: file.digest,
+      digestOriginal: file.digestOriginal,
       digestFirmed: file.digestFirmed,
       documentFirmed: file.plainFirmed,
       size: file.size,
       sizeHuman: bytesToSize(file.size),
-      generated: new Date(), 
+      generated: new Date(),
+      pemPublic,
     }, null, 2)
     downloadJson(`Firmed - ${file.name}.json`, document)
   }
@@ -101,7 +100,7 @@ const CardFinish = ({key, file}) => {
           label="Digest del Documento"
           variant="outlined"
           fullWidth
-          defaultValue={file.digest}
+          defaultValue={file.digestOriginal}
           className={clsx(classes.margins)}
         />
         <TextField

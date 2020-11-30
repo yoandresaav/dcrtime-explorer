@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, Button, FormControl, Input, TextareaAutosize, TextField, FormHelperText, InputLabel, InputAdornment, IconButton } from '@material-ui/core';
+import { FormControl, TextField, IconButton } from '@material-ui/core';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,10 +25,6 @@ const useStyles = makeStyles((theme) => ({
 
 const EmailInput = ({data, updateForm}) => {
   const classes = useStyles();
-
-  React.useEffect(() => {
-    console.log(data)
-  }, [data.email])
 
   const validateEmail = () => {
     const email = data.email

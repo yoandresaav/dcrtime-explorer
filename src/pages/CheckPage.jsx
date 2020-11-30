@@ -1,15 +1,11 @@
 import React, { useEffect, useState, Fragment } from 'react'
 import clsx from 'clsx';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import ProTip from '../components/ProTip';
-import { Box, Grid, Button, FormControl, Input, TextareaAutosize, TextField, FormHelperText, InputLabel } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import 'fontsource-roboto';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
-import {signData} from '../helpers/utils-keys'
 import axios from 'axios';
-import Snackbar from '@material-ui/core/Snackbar';
 import { useLocation } from 'react-router-dom';
 import Notification from '../messages/Notification';
 
@@ -56,8 +52,6 @@ const CheckPage = (props) => {
     setOpenBadDigest(false);
   }
 
-  console.log('PARAMS: ', props.match.params.digest)
-
   const callApi = async () => {
     const digest = props.match.params.digest;
     
@@ -98,7 +92,6 @@ const CheckPage = (props) => {
     />
   </div>
 
-  console.log('DIGESTS: ', result.digests)
   result.digests.map((r) => {
     console.log(r.digest)
   })

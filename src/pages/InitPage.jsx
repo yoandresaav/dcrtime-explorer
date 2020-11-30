@@ -1,13 +1,10 @@
 import React from 'react'
 import clsx from 'clsx';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import ProTip from '../components/ProTip';
-import { Box, Grid, Button, FormControl, Input, TextareaAutosize, TextField, FormHelperText, InputLabel, Link } from '@material-ui/core';
+import { Grid, Button, Link } from '@material-ui/core';
 import 'fontsource-roboto';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
-import {signData} from '../helpers/utils-keys'
 import {Link as LinkRoute} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({

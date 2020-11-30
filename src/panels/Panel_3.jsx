@@ -1,13 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, Button, Tooltip, FormControl, Input, TextareaAutosize, TextField, FormHelperText, InputLabel, InputAdornment, IconButton } from '@material-ui/core';
+import { Grid, Tooltip, FormControl, TextField, IconButton } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import ButtonKeyGenerator from '../components/ButtonKeyGenerator'
 import ChooseHaveKey from '../components/ChooseHaveKey';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import GetAppIcon from '@material-ui/icons/GetApp';
+import UploadPrivateKey from '../components/UploadPrivateKey';
+import UploadPublicKey from '../components/UploadPublicKey';
 
 import {downloadZip, generateZip} from '../helpers/utils-file';
 
@@ -146,13 +148,12 @@ const Panel_3 = ({propsKey}) => {
           :
             <FormControl className={clsx(classes.margin)}>
               {/* User entry your private key */}
-                <TextField
-                  multiline={true}
-                  rows={16}
-                  variant="outlined"
-                  label="Private Key"
-                  value={showKey ? propsKey.userPrivateKey : propsKey.userPrivateKey ? privateMask : ''}
-                  onChange={ (e) => { propsKey.setUserPrivateKey(e.target.value) } }
+                <UploadPrivateKey 
+                  userPrivateKey={propsKey.storeKey}
+                  setUserPrivateKey={propsKey.setStoreKey}
+                />
+                <UploadPublicKey 
+                  setUserPrivateKey={propsKey.setStoreKey}
                 />
               </FormControl>
         }
