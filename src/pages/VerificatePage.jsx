@@ -62,6 +62,7 @@ const initialStateVerificate = {
   isValidFirmedDigest: null,
   isValidJson: null,
   isExistInDecred: null,
+  resultDecred: null,
 }
 
 const isHaveGoodFormat = json => {
@@ -99,12 +100,9 @@ const VerificatePage = () => {
     // save only digest sended
     const digest = digests.find(d => d.digest === json.digestFirmed);
     const {result} = digest;
-    setResponseDecred({
-      ...result
-    });
-    // Valid result 0 - bad, 1 - All ok, 2 - Exists, 3 - Not exists, 4 - Bad query
-    const fileExistInDecred = result === 1 || result === 2;
-    setVerificateProcess(prev => ({...prev, isExistInDecred: fileExistInDecred}))
+    setResponseDecred(digest);
+    // Valid result 0 - Success, 1 - All ok, 2 - Exists, 3 - Not exists, 4 - Bad query
+    setVerificateProcess(prev => ({...prev, resultDecred: result}))
   }
 
 
@@ -123,9 +121,7 @@ const VerificatePage = () => {
     // Validate
     try {
       const isValidFirmedDigest = await verifyFirmed(publicKey, docFirmed, digestOriginal);
-      setVerificateProcess(prev => ({ 
-        ...prev, isValidFirmedDigest,
-      }));
+      setVerificateProcess(prev => ({...prev, isValidFirmedDigest}));
       // save data
       setCheckedInfo(json);
     } catch (error) {
@@ -175,7 +171,7 @@ const VerificatePage = () => {
     if (json){
       verifyFirmedDigest(json);
       // return list digest
-      const digests = await checkIfDocumentExistInDecred(json.digestFirmed);
+      const digests = await checkIfDocumentExistInDecred([json.digestFirmed]);
       saveResultDecred(json, digests);
     }
 
@@ -190,7 +186,7 @@ const VerificatePage = () => {
       <Grid item className={clsx(classes.root, classes.margin)}>
         <Card className={clsx(classes.margin, classes.root, classes.card)}>
           <Typography variant="h4" component="h4" className={clsx(classes.title)}>
-            Comprueba que los documentos ya estan registrados en la blockchain
+            Comprueba la validez y existencia de los documentos en la blockchain de Decred
           </Typography>
           <Typography component="p" className={classes.document}>
             Usamos ficheros de verificación con un formato propio. En estos se guarda en formato json la fecha en que se genera el fichero, el digest o hash256 del fichero original, el signature o resumen del documento que ha sido firmado por la llave privada, una copia de la llave pública para realizar la verificación, el digest que se genera del documento firmado y que se guarda en la blockchein de Decred.
@@ -204,23 +200,22 @@ const VerificatePage = () => {
 
         {/* Resumen verificate */}
         {(verificateProcess.step !== LOADING_FILE) &&
-        <Fragment>
-            <ResumenVerificate 
-              checkedInfo={checkedInfo}
-            />
-            <ListaVerificate
-              verificateProcess={verificateProcess}
-            />
-          <div className={classes.buttonDiv}>
-            <Button 
-              variant="contained" 
-              color="primary"
-              onClick={onClickOtro}
-            >Comprobar otro</Button>
-          </div>
-        </Fragment>}
+          <Fragment>
+              <ResumenVerificate 
+                checkedInfo={checkedInfo}
+              />
+              <ListaVerificate
+                verificateProcess={verificateProcess}
+              />
+            <div className={classes.buttonDiv}>
+              <Button 
+                variant="contained" 
+                color="primary"
+                onClick={onClickOtro}
+              >Comprobar otro</Button>
+            </div>
+          </Fragment>}
         
-
         </Card>
       </Grid>
       <Notification 

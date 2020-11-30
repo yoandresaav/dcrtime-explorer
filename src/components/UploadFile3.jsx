@@ -4,7 +4,7 @@ import {useDropzone} from 'react-dropzone';
 import ListFile from '../components/ListFile'
 import ItemFile from '../components/ItemFile'
 
-import {createDigest} from '../helpers/create-digest';
+import {createDigest} from '../helpers/api-decred';
 import {bytesToSize} from '../helpers/utils-file';
 import {baseStyle, activeStyle, acceptStyle, rejectStyle, containerStyle} from '../helpers/styles-uploads';
 

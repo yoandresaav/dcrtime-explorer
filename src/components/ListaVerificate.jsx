@@ -16,6 +16,8 @@ const ListaVerificate = ({verificateProcess}) => {
     switch (isDone) {
       case null:
         return <CircularProgress size={25} />
+      case 0:
+      case 1:
       case true:
           return <DoneIcon color="primary" />
       default:
@@ -28,6 +30,18 @@ const ListaVerificate = ({verificateProcess}) => {
           {switchIcon(isDone)}
         </IconButton>
       </ListItemSecondaryAction>)
+  
+  const existsInDecred = (resultDecred) => {
+    /* Valid result 0 - Success, 1 - File not found in server , 2 - No anchored in server */
+    switch (resultDecred) {
+      case 0:
+        return "En proceso de anclarse en la blockchain"
+      case 1:
+          return "El archivo se encuentra en el server"
+      default: //2
+        return "El archivo no existe en la blockchain de decred"
+    }
+  }
 
   return (
     <List>
@@ -49,7 +63,7 @@ const ListaVerificate = ({verificateProcess}) => {
             <AssignmentIcon />
           </ListItemIcon>
           <ListItemText
-            primary="Comprobando que la firma del documento es correcta"
+            primary="Comprobando la firma del documento"
             secondary={ verificateProcess.isValidFirmedDigest ? "Comprobado" : "Incorrecto"}
           />
           {ShowIcon(verificateProcess.isValidFirmedDigest)}
@@ -61,10 +75,10 @@ const ListaVerificate = ({verificateProcess}) => {
             <AssignmentIcon />
           </ListItemIcon>
           <ListItemText
-            primary="Verificando que el documento firmado existe en la blockchain de Decred"
-            secondary={ verificateProcess.isExistInDecred ? "Verificado" : "No existe en la blockchain de decred"}
+            primary="Comprobando existencia en la blockchain de Decred"
+            secondary={ existsInDecred(verificateProcess.resultDecred)}
           />
-          {ShowIcon(verificateProcess.isExistInDecred)}
+          {ShowIcon(verificateProcess.resultDecred)}
         </ListItem>
     </List>
   )

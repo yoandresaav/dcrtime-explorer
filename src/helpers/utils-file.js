@@ -1,6 +1,6 @@
 import JSZip from "jszip";
 import {signData, str2ab} from './utils-keys';
-import {digestPayload} from '../helpers/create-digest';
+import {digestPayload} from '../helpers/api-decred';
 
 // util function
 const onDownload = (filename, data) => {

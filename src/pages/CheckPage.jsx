@@ -5,9 +5,10 @@ import { Grid } from '@material-ui/core';
 import 'fontsource-roboto';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import Notification from '../messages/Notification';
+import {checkIfDocumentExistInDecred, isDigestFound, isDigestAnchorPending, isDigestAnchored, isDigestNotAnchored} from '../helpers/api-decred';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,23 +61,10 @@ const CheckPage = (props) => {
       setOpenBadDigest(true)
       return
     }
-    
-    const url = 'https://time-testnet.decred.org:59152/v2/verify/batch'
-    const json = JSON.stringify({
-      "id":"dcrtime cli",
-      "digests":[
-        digest
-        ]
-    })
-    let response = null;
-    try {
-      response = await axios.post(url, json)
-    } catch (e) {
-      console.error(e)
-      alert(e)
-      return
-    }
-    setResult(response.data)
+
+    const response = await checkIfDocumentExistInDecred([digest]);
+    console.log('response.data: ', response)
+    setResult(response);
   }
 
   useEffect(()=> {
@@ -92,48 +80,35 @@ const CheckPage = (props) => {
     />
   </div>
 
-  result.digests.map((r) => {
-    console.log(r.digest)
-  })
-
   return (
     <Grid container justify="center">
       <Grid item className={clsx(classes.root, classes.margin)}>
         <Card className={clsx(classes.margin, classes.root, classes.card)}>
           <Typography variant="h4" component="h4" className={clsx(classes.title)}>
-            Comprueba que los documentos ya estan registrados en la blockchain
+            Prueba de existencia
           </Typography>
           <Typography component="p" className={classes.document}>
-            Veniam est commodo eu aliquip do est culpa aliqua do quis. Voluptate velit exercitation do magna magna consectetur laborum ipsum. Voluptate deserunt cillum velit pariatur aute cupidatat sint ex velit. Anim labore qui elit dolore id anim commodo elit fugiat anim elit. Sint pariatur reprehenderit qui do enim. Minim nostrud nulla ullamco minim non voluptate laboris elit minim cupidatat.
+            Comprueba que el hash firmado de un documento se encuentra anclado en la blockchain de Decred. Recuerda que necesitas un hash256 de 64 caracteres de longitud.
           </Typography>
           <Grid item className={clsx(classes.grid)} ></Grid>
-            {result.digests.map((res, index) => (
+            {result && result.map((res, index) => (
               <Fragment key={index}>
                 <h4>{res.digest}</h4>
                 <p>{res.result}</p>
-                {/* Resultado Inválido */}
-                {(res.result === 0) && 
-                <div>Resultado Inválido</div>}
+                {/* Result Success */}
+                {(isDigestAnchorPending(res)) &&
+                  <div>Se encuentra en proceso de anclarse a la blockchain de Decred </div>}
 
-                {/* Resultado Válido */}
-                {(res.result === 1) && 
-                <div>Resultado Success</div>}
+                {/* Result File in server */}
+                {(isDigestFound(res) && isDigestAnchored(res)) && 
+                  <div>El archivo esta anclado en la blockchain de Decred</div>}
 
-                {/* Result exists in server */}
-                {(res.result === 2) && 
-                <div>Resultado Exist in Server</div>}
-
-                {/* Result exists in server */}
-                {(res.result === 3) && 
-                <div>Resultado not Exist in Server</div>}
-
-                {/* Result exists in server */}
-                {(res.result === 4) && 
-                <div>Se ha desactivado la verificacion</div>}
+                {/* Not anchores */}
+                {(isDigestNotAnchored(res)) && 
+                  <div>El archivo no esta anclado en la blockchain de Decred</div>}
               </Fragment>
             ))}
             
-          
         </Card>
       </Grid>
     </Grid>
