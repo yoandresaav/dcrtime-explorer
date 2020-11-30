@@ -11,7 +11,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
   },
   margin: {
-    margin: theme.spacing(3),
+    [theme.breakpoints.up('md')]: {
+      margin: theme.spacing(3),
+    },
   },
   title: {
     display: 'block',

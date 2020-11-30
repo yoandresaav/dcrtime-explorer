@@ -7,7 +7,9 @@ import CardFinish from '../components/CardFinish';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: '120ch',
+    [theme.breakpoints.up('md')]: {
+      minWidth: '120ch',
+    },
   },
   media: {
     height: 0,

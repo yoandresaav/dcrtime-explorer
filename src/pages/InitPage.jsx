@@ -16,8 +16,10 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '80ch',
   },
   margin: {
-    margin: theme.spacing(3),
     padding: theme.spacing(1),
+    [theme.breakpoints.up('md')]: {
+      margin: theme.spacing(3),
+    },
   },
   title: {
     textAlign: 'center',

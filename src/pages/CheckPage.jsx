@@ -7,9 +7,11 @@ import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import { useLocation } from 'react-router-dom';
 import Notification from '../messages/Notification';
-import {checkIfDocumentExistInDecred, isDigestFound, isDigestAnchorPending, isDigestAnchored, isDigestNotAnchored} from '../helpers/api-decred';
+import {checkIfDocumentExistInDecred, isDigestAnchorPending, isDigestAnchored, isDigestNotAnchored} from '../helpers/api-decred';
 import CheckIsDigest from '../components/CheckIsDigest';
 import CheckError from '../components/CheckError';
+import TypoVeryLarge from '../components/TypoVeryLarge';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,8 +21,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   margin: {
-    margin: theme.spacing(3),
     padding: theme.spacing(1),
+    [theme.breakpoints.up('md')]: {
+      margin: theme.spacing(3),
+    },
   },
   title: {
     color: 'gray',
@@ -36,6 +40,14 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     textAlign: 'left',
+  },
+  large: {
+    overflow: "hidden", 
+    textOverflow: "ellipsis", 
+    width: '15rem',
+    [theme.breakpoints.up('sm')]: {
+      width: '100%',
+    },
   }
 }));
 
@@ -79,10 +91,8 @@ const CheckPage = (props) => {
             Comprueba que el hash firmado de un documento se encuentra anclado en la blockchain de Decred. Recuerda que necesitas un hash256 de 64 caracteres de longitud.
           </Typography>
             {result && result.map((res, index) => (
-              <Fragment key={index}>
-                <Typography component="h3">
-                  <strong>Hash:</strong> {res.digest}
-                </Typography>
+              <div key={index} className={classes.large}>
+                <TypoVeryLarge title={<Fragment><strong>Hash:</strong> {res.digest}</Fragment>} />
                 {/* Result Success */}
                 {(isDigestAnchorPending(res)) &&
                   <div>Se encuentra en proceso de anclarse a la blockchain de Decred </div>}
@@ -94,7 +104,7 @@ const CheckPage = (props) => {
                 {(!isDigestAnchored(res) && isDigestNotAnchored(res)) && 
                   <CheckError title="El hash no esta anclado en la blockchain de Decred." />}
 
-              </Fragment>
+              </div>
             ))}
             
             {(!result) && 

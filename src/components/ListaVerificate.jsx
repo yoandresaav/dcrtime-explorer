@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -10,8 +11,20 @@ import CloseIcon from '@material-ui/icons/Close';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {isDigestAnchored, isDigestAnchorPending, isDigestFound} from '../helpers/api-decred';
+import TypoVeryLarge from '../components/TypoVeryLarge';
 
+const useStyles = makeStyles((theme) => ({
+  lextLong: {
+    overflow: "hidden", 
+    textOverflow: "ellipsis", 
+    width: '3rem'
+  }
+}));
+
+// overflow-wrap: break-word; 
 const ListaVerificate = ({verificateProcess, responseDecred}) => {
+
+  const classes = useStyles()
 
   const switchIcon = (isDone) => {
     switch (isDone) {
@@ -103,7 +116,8 @@ const ListaVerificate = ({verificateProcess, responseDecred}) => {
               </ListItemIcon>
               <ListItemText
                 primary="Raiz de Merkle. Comprueba haciendo click en la transacción"
-                secondary={ resolveTx(responseDecred).merkle}
+                secondary={ <TypoVeryLarge title={resolveTx(responseDecred).merkle} /> }
+                className={classes.lextLong}
               />
             </ListItem>
             <ListItem>
@@ -111,7 +125,10 @@ const ListaVerificate = ({verificateProcess, responseDecred}) => {
                 <AssignmentIcon />
               </ListItemIcon>
               <ListItemLink href={`https://dcrdata.decred.org/tx/${resolveTx(responseDecred).tx}`}>
-                <ListItemText primary={`Tx: ${resolveTx(responseDecred).tx}` } />
+                <ListItemText 
+                  className={classes.lextLong} 
+                  primary={<TypoVeryLarge  title={`Tx: ${resolveTx(responseDecred).tx}`} />}
+                />
               </ListItemLink>
             </ListItem>
           </Fragment>

@@ -21,7 +21,7 @@ const ButtonKeyGenerator = ({addKeys}) => {
   }
   return (
     <Button variant="contained" color="secondary" onClick={onClick} >
-      Key generator
+      Crear Llaves
     </Button>
   )
 }

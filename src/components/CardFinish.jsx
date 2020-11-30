@@ -11,7 +11,7 @@ import {downloadJson} from '../helpers/utils-file';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: '120ch',
+    maxWidth: '120ch',
   },
   media: {
     height: 0,

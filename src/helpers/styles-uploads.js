@@ -29,7 +29,6 @@ export const rejectStyle = {
 
 export const containerStyle = {
   width: '100%',
-  minWidth: '80ch',
   minHeight: '33ch',
   display: 'block',
 };

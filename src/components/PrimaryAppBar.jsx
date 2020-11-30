@@ -102,10 +102,6 @@ export default function PrimarySearchAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -135,22 +131,6 @@ export default function PrimarySearchAppBar() {
     redirectPage(digest)
   }
 
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
@@ -162,31 +142,23 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
+      <MenuItem component={Link} to='/'>
+        <IconButton aria-label="inicio" color="inherit" >  
+          <HomeIcon />
         </IconButton>
-        <p>Messages</p>
+        <p>Inicio</p>
       </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
+      <MenuItem component={Link} to='/firm'>
+        <IconButton aria-label="firmar documentos" color="inherit" >
+          <BorderColorIcon />
         </IconButton>
-        <p>Notifications</p>
+        <p>Firmar archivos</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
+      <MenuItem component={Link} to={'/verify'}>
+        <IconButton aria-label="comprobar archivos" color="inherit" >
+          <AssignmentTurnedInIcon />
         </IconButton>
-        <p>Profile</p>
+        <p>Comprobar</p>
       </MenuItem>
     </Menu>
   );
@@ -226,12 +198,12 @@ export default function PrimarySearchAppBar() {
               </IconButton>
             </Tooltip>
             <Tooltip title="Firmar">
-              <IconButton aria-label="firm document" color="inherit" component={Link} to='/firm'>
+              <IconButton aria-label="firmar documentos" color="inherit" component={Link} to='/firm'>
                 <BorderColorIcon />
               </IconButton>
             </Tooltip>
             <Tooltip title="Comprobar">
-              <IconButton aria-label="check document" color="inherit" component={Link} to={'/verify'}>
+              <IconButton aria-label="comprobar archivos" color="inherit" component={Link} to={'/verify'}>
                 <AssignmentTurnedInIcon />
               </IconButton>
             </Tooltip>
@@ -250,7 +222,6 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
     </div>
   );
 }

@@ -16,8 +16,11 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
   },
   margin: {
-    margin: theme.spacing(3),
     padding: theme.spacing(1),
+    margin: theme.spacing(1),
+    [theme.breakpoints.up('md')]: {
+      margin: theme.spacing(3),
+    },
   },
 }));
 

@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
+import TypoVeryLarge from './TypoVeryLarge';
 
 const CheckIsDigest = ({res}) => {
 
@@ -28,10 +29,10 @@ const CheckIsDigest = ({res}) => {
         </ListItemSecondaryAction>
       </ListItem>
       <ListItem  role={undefined} dense >
-        <ListItemText primary={`Raiz de Merkle: ${chaininformation.merkleroot}`} />
+        <ListItemText primary={<TypoVeryLarge title={ `Raiz de Merkle: ${chaininformation.merkleroot}` } />} />
       </ListItem>
       <ListItemLink href={`https://dcrdata.decred.org/tx/${chaininformation.transaction}`}>
-        <ListItemText primary={'Tx: ' + chaininformation.transaction} />
+        <ListItemText primary={ <TypoVeryLarge title={ `Tx: ${chaininformation.transaction}` } /> } />
       </ListItemLink>
     </List>
   )

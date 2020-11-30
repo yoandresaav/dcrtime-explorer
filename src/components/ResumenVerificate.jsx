@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import TypoVeryLarge from './TypoVeryLarge';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    overflow: "hidden", 
+    textOverflow: "ellipsis", 
+    width: '20rem',
+    [theme.breakpoints.up('sm')]: {
+      width: '100%',
+    },
+  }
+}));
 
 const ResumenVerificate = ({checkedInfo}) => {
+
+
+  const classes = useStyles();
+
   const {name, sizeHuman, digestFirmed, digestOriginal} = checkedInfo;
-  console.log(
-    checkedInfo)
   return (
-    <div>
+    <div className={classes.root}>
       <Typography component="h4" variant="h5">
         Resumen
       </Typography>
@@ -16,12 +32,8 @@ const ResumenVerificate = ({checkedInfo}) => {
       <Typography component="h4">
         Tamaño: {sizeHuman}
       </Typography>
-      <Typography component="h4">
-        Hash original: {digestOriginal}
-      </Typography>
-      <Typography component="h4">
-        Hash firmado: {digestFirmed}
-      </Typography>
+      <TypoVeryLarge title={digestOriginal} />
+      <TypoVeryLarge title={digestFirmed} />
     </div>
   )
 }

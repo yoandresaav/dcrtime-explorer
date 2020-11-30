@@ -8,6 +8,11 @@ import {createDigest} from '../helpers/api-decred';
 import {bytesToSize} from '../helpers/utils-file';
 import {baseStyle, activeStyle, acceptStyle, rejectStyle, containerStyle} from '../helpers/styles-uploads';
 
+const styleTextLong = {
+  overflow: "hidden", 
+  textOverflow: "ellipsis", 
+  width: '3rem'
+}
 
 const UploadFile3 = ({ files, updateForm }) => {
 
@@ -59,7 +64,7 @@ const UploadFile3 = ({ files, updateForm }) => {
       </div>
       {(files.length > 0) &&<aside>
         <h4>Archivos</h4>
-        <ListFile>
+        <ListFile style={styleTextLong}>
           <ul>{showFiles}</ul>
         </ListFile>
       </aside>}

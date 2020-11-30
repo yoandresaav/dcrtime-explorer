@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Input data', 'Upload files', 'Create an ad'];
+  return ['Entra tu correo', 'Sube los ficheros', 'Firmalos'];
 }
 
 const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
@@ -99,7 +99,7 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
           <div>
             <PanelFinish data={data} propsKey={propsKey} />
             <Button onClick={handleReset} className={classes.button}>
-              Reset
+              Firmar otros
             </Button>
           </div>
         ) : (
@@ -108,7 +108,7 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
 
             <div className={classes.buttonDiv}>
               <Button disabled={activeStep === 0 || loading} onClick={handleBack} className={classes.button}>
-                Back
+                Atrás
               </Button>
               <Button
                 variant="contained"
@@ -117,7 +117,7 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
                 disabled={loading}
                 className={classes.button}
               >
-                {isLastStep() ? 'Finish' : 'Next'}
+                {isLastStep() ? 'Firmar' : 'Siguiente'}
               </Button>
             </div>
           </div>
