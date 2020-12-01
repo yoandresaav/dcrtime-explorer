@@ -104,6 +104,12 @@ const VerificatePage = () => {
     setVerificateProcess(prev => ({...prev, resultDecred: result}))
   }
 
+  // Reset process
+  const onClickOtro = () =>{
+    setVerificateProcess(initialStateVerificate);
+    setResponseDecred(null);
+  }
+
 
   // Al verify sign steps
   const verifyFirmedDigest = async json => {
@@ -176,19 +182,15 @@ const VerificatePage = () => {
 
   }, [])
 
-  const onClickOtro = () =>{
-    setVerificateProcess(initialStateVerificate);
-  }
-
   return (
     <Grid container justify="center">
       <Grid item className={clsx(classes.root, classes.margin)}>
         <Card className={clsx(classes.margin, classes.root, classes.card)}>
           <Typography variant="h4" component="h4" className={clsx(classes.title)}>
-            Comprueba la validez y existencia de los archivos en la blockchain de Decred
+            Comprueba la validez y existencia de los archivos en la cadena de bloques de Decred
           </Typography>
           <Typography component="p" className={classes.document}>
-            Usamos ficheros de verificación con un formato propio. En estos se guarda en formato json la fecha en que se genera el fichero, el digest o hash256 del fichero original, el signature o resumen del documento que ha sido firmado por la llave privada, una copia de la llave pública para realizar la verificación, el digest que se genera del documento firmado y que se guarda en la blockchain de Decred.
+            Nuestras <strong>Pruebas de Firmado</strong> tienen un formato propio. En estos se guarda en json la fecha en que se genera el fichero, el digest o hash256 del fichero original, el signature o resumen del documento que ha sido firmado por la llave privada, una copia de la llave pública para realizar la verificación, el digest que se genera del documento firmado y que se guarda en la cadena de bloques de Decred.
           </Typography>
 
         {/* Upload component */}

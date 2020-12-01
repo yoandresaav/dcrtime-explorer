@@ -19,7 +19,7 @@ const CheckIsDigest = ({res}) => {
     <List>
       <ListItem >
         <ListItemText 
-          primary="Estado: El hash esta anclado en la blockchain de Decred." 
+          primary="Estado: El hash esta anclado en la cadena de bloques de Decred." 
           secondary="Revisa haciendo click en la transacción"
         />
         <ListItemSecondaryAction>

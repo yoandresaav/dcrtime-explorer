@@ -48,13 +48,13 @@ const ListaVerificate = ({verificateProcess, responseDecred}) => {
   const existsInDecred = (responseDecred) => {
     /* Valid result 0 - Success, 1 - File not found in server , 2 - No anchored in server */
     if (responseDecred && isDigestAnchored(responseDecred)){
-      return "El archivo se encuentra anclado en la blockchain de Decred"
+      return "El archivo se encuentra anclado en la cadena de bloques de Decred"
     } else if (responseDecred && isDigestAnchorPending(responseDecred)){
-      return "En proceso de anclarse en la blockchain de Decred"
+      return "En proceso de anclarse en la cadena de bloques de Decred"
     } else if (responseDecred && isDigestFound(responseDecred)){
-      return "El archivo esta en proceso de anclarse en la blockchain de decred"
+      return "El archivo esta en proceso de anclarse en la cadena de bloques de Decred"
     } else {
-      return "El archivo no esta anclado en la blockchain de decred"
+      return "El archivo no esta anclado en la cadena de bloques de Decred"
     }
   }
 
@@ -62,8 +62,6 @@ const ListaVerificate = ({verificateProcess, responseDecred}) => {
     const {chaininformation} = digest;
     return  {tx: chaininformation.transaction, merkle: chaininformation.merkleroot} 
   }
-
-  console.log(responseDecred)
 
   const ListItemLink = (props) => {
     return <ListItem button component="a" {...props} />;
@@ -101,7 +99,7 @@ const ListaVerificate = ({verificateProcess, responseDecred}) => {
             <AssignmentIcon />
           </ListItemIcon>
           <ListItemText
-            primary="Comprobando existencia en la blockchain de Decred"
+            primary="Comprobando existencia en la cadena de bloques de Decred"
             secondary={ existsInDecred(responseDecred)}
           />
           {ShowIcon(verificateProcess.resultDecred)}

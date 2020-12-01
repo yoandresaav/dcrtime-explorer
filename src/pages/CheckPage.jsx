@@ -88,21 +88,21 @@ const CheckPage = (props) => {
             Prueba de existencia
           </Typography>
           <Typography component="p" className={classes.document}>
-            Comprueba que el hash firmado de un archivo se encuentra anclado en la blockchain de Decred. Recuerda que necesitas un sha256 de 64 caracteres de longitud.
+            Comprueba que el hash firmado de un archivo se encuentra anclado en la cadena de bloques de Decred. Recuerda que necesitas un sha256 de 64 caracteres de longitud.
           </Typography>
             {result && result.map((res, index) => (
               <div key={index} className={classes.large}>
                 <TypoVeryLarge title={<Fragment><strong>Hash:</strong> {res.digest}</Fragment>} />
                 {/* Result Success */}
                 {(isDigestAnchorPending(res)) &&
-                  <div>Se encuentra en proceso de anclarse a la blockchain de Decred </div>}
+                  <div>Se encuentra en proceso de anclarse en la cadena de bloques de Decred </div>}
 
                 {/* Result File in server */}
                 {(isDigestAnchored(res)) && <CheckIsDigest res={res} />}
 
                 {/* Not anchores */}
                 {(!isDigestAnchored(res) && isDigestNotAnchored(res)) && 
-                  <CheckError title="El hash no esta anclado en la blockchain de Decred." />}
+                  <CheckError title="El hash no esta anclado en la cadena de bloques de Decred." />}
 
               </div>
             ))}

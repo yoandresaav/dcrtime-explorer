@@ -64,7 +64,7 @@ const PanelFinish = ({data, propsKey}) => {
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="p" className={classes.subtitle}>
-          El proceso de anclado en la blockchain de Decred demora por lo general unos 30 minutos.
+          El proceso de anclado en la cadena de bloques de Decred demora por lo general unos 30 minutos.
         </Typography>
 
         {(!!data.mail) &&
