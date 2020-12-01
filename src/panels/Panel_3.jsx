@@ -96,7 +96,7 @@ const Panel_3 = ({propsKey, errors}) => {
             {/* Dowload Icon */}
             {(propsKey.storeKey.pemPrivate && propsKey.storeKey.pemPublic && propsKey.useGenerateKey) &&
               <Fragment>
-                <span className={classes.important}>Importante Descarga y Guarda Seguro las Llaves</span>
+                <span className={classes.important}>Importante: Descarga y Guarda Seguro las Llaves</span>
                 <Tooltip title="Descargar Zip Llaves">
                   <IconButton
                     onClick={onDownloadClick}

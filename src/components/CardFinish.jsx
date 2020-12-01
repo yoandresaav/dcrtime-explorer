@@ -92,7 +92,7 @@ const CardFinish = ({file, pemPublic}) => {
         action={
           <div>
             <span className={classes.important}>
-              Importante Descarga el Archivo de Verificación
+              Importante: Descarga el Archivo de Verificación
             </span>
             <Tooltip title="Archivo de Verificación">
               <IconButton aria-label="download json format" onClick={generateJson}>

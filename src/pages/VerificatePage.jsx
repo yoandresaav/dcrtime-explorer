@@ -186,8 +186,8 @@ const VerificatePage = () => {
     <Grid container justify="center">
       <Grid item className={clsx(classes.root, classes.margin)}>
         <Card className={clsx(classes.margin, classes.root, classes.card)}>
-          <Typography variant="h4" component="h4" className={clsx(classes.title)}>
-            Comprueba la validez y existencia de los archivos en la cadena de bloques de Decred
+        <Typography variant="h5" component="h5" className={clsx(classes.title)}>
+            Comprueba la validez y existencia de los archivos <br /> en la cadena de bloques de Decred
           </Typography>
           <Typography component="p" className={classes.document}>
             Nuestras <strong>Pruebas de Firmado</strong> tienen un formato propio. En estos se guarda en json la fecha en que se genera el fichero, el digest o hash256 del fichero original, el signature o resumen del documento que ha sido firmado por la llave privada, una copia de la llave pública para realizar la verificación, el digest que se genera del documento firmado y que se guarda en la cadena de bloques de Decred.
