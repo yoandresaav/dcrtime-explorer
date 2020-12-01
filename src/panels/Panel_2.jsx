@@ -17,15 +17,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Panel_2 = ({data, updateForm}) => {
+const Panel_2 = ({data, updateForm, errors}) => {
   const classes = useStyles();
   return (
     <Grid container direction="column" alignItems="center" justify="center" >
       <Grid item className={clsx(classes.root)}>
-        <Typography variant="title" className={classes.title} component="h3">
+        <Typography variant="subtitle1" className={classes.title} component="h3">
           Sube los ficheros que deseas firmar:
         </Typography>
         <UploadFile3 files={data.files} updateForm={updateForm} />
+        {(errors) &&
+          <Typography color="error">Debes agregar un fichero para continuar.</Typography>}
       </Grid>
     </Grid>
   )

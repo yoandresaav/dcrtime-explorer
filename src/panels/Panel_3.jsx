@@ -10,6 +10,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import UploadPrivateKey from '../components/UploadPrivateKey';
 import UploadPublicKey from '../components/UploadPublicKey';
+import Typography from '@material-ui/core/Typography';
 
 import {downloadZip, generateZip} from '../helpers/utils-file';
 
@@ -48,14 +49,14 @@ const useStyles = makeStyles((theme) => ({
 
 
 /**
-Son dos procesos 
-1 - Si tiene clave privada TODO
-2 - Generar las claves privadas 
+Its two process 
+1 - If have private and public key
+2 - Generate new keys
  */
 
 const privateMask = '00000000000-00000000000-00000000000-00000000000-00000000000'
 
-const Panel_3 = ({propsKey}) => {
+const Panel_3 = ({propsKey, errors}) => {
   const classes = useStyles();
 
   const [showKey, setShowKey] = React.useState(false);
@@ -189,6 +190,10 @@ const Panel_3 = ({propsKey}) => {
                 }
               </FormControl>
         }
+      {(errors && propsKey.useGenerateKey) &&
+          <Typography color="error" className={classes.margin}>Debes crear las llaves.</Typography>}
+      {(errors && !propsKey.useGenerateKey) &&
+          <Typography color="error" className={classes.margin}>Debes subir tus llaves públicas y privadas.</Typography>}
     </Grid>
   )
 }

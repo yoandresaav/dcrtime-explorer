@@ -77,7 +77,6 @@ const FirmPage = () => {
       alert('No f.digestFirmed')
     }
     const res =  await sendDigestToDecred(allDigest)
-    console.log(res)
     return 
   }
 
