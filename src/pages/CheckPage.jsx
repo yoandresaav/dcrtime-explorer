@@ -84,8 +84,8 @@ const CheckPage = (props) => {
     <Grid container justify="center">
       <Grid item className={clsx(classes.root, classes.margin)}>
         <Card className={clsx(classes.margin, classes.root, classes.card)}>
-          <Typography variant="h4" component="h4" className={clsx(classes.title)}>
-            Prueba de existencia
+          <Typography variant="h5" component="h5" className={clsx(classes.title)}>
+          Prueba de existencia
           </Typography>
           <Typography component="p" className={classes.document}>
             Comprueba que el hash firmado de un archivo se encuentra anclado en la cadena de bloques de Decred. Recuerda que necesitas un sha256 de 64 caracteres de longitud.

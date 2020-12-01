@@ -30,5 +30,5 @@ Este proyecto fue creado en el marco del evento Blockchain Learning Challenge La
 
 ## Recomendaciones a seguir desarrollando
 
-- Incrustar la Prueba de Firmado en el archivo.
+- Incrustar el Archivo de Verificación en el archivo.
 - Desarrollar un servicio de custodia de documentos, claves y Pruebas de Firmado.

@@ -155,10 +155,10 @@ export default function PrimarySearchAppBar() {
         <p>Firmar archivos</p>
       </MenuItem>
       <MenuItem component={Link} to={'/verify'}>
-        <IconButton aria-label="comprobar archivos" color="inherit" >
+        <IconButton aria-label="verificar archivos" color="inherit" >
           <AssignmentTurnedInIcon />
         </IconButton>
-        <p>Comprobar</p>
+        <p>Verificar</p>
       </MenuItem>
     </Menu>
   );
@@ -202,8 +202,8 @@ export default function PrimarySearchAppBar() {
                 <BorderColorIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Comprobar">
-              <IconButton aria-label="comprobar archivos" color="inherit" component={Link} to={'/verify'}>
+            <Tooltip title="Verificar">
+              <IconButton aria-label="verificar archivos" color="inherit" component={Link} to={'/verify'}>
                 <AssignmentTurnedInIcon />
               </IconButton>
             </Tooltip>

@@ -61,7 +61,7 @@ const LandingIconos = () => {
                 </div>
               </Paper>
               <Typography variant="subtitle1" className={classes.subtitle}>
-                  Descarga la <br /> Prueba de Firmado
+                  Descarga el <br /> Archivo de Verificación
                 </Typography>
             </Grid>
 

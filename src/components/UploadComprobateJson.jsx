@@ -37,7 +37,7 @@ const UploadComprobateJson = ({saveFile}) => {
       <section className="container" style={containerStyle}>
         <div {...getRootProps({style})}>
           <input {...getInputProps()} />
-          <p>Arraste o click para seleccionar una Prueba de Firmado</p>
+          <p>Arraste o click para seleccionar un Archivo de Verificación</p>
           <AssignmentTurnedInIcon  style={{fontSize: 60}} />
         </div>
       </section>

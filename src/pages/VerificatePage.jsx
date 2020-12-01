@@ -214,7 +214,7 @@ const VerificatePage = () => {
                 variant="contained" 
                 color="primary"
                 onClick={onClickOtro}
-              >Comprobar otro</Button>
+              >Verificar otro</Button>
             </div>
           </Fragment>}
         

@@ -75,7 +75,7 @@ const InitPage = () => {
           <LandingIconos />
 
           <Typography component="p" className={classes.document}>
-            La <strong>Prueba de Firmado</strong> almacena algunos datos del archivo original, hash firmados y una copia de la llave pública. Este fichero se debe descargar y usar en el proceso de verificación. Distribuya la Prueba de Firmado para que se reconozca su autoria.
+            El <strong>Archivo de Verificación</strong> almacena algunos datos del archivo original, hash firmados y una copia de la llave pública. Este fichero se debe descargar y usar en el proceso de verificación. Distribuya el Archivo de Verificación para que se reconozca su autoria.
           </Typography>
           <Grid item className={clsx(classes.gridBtn)} >
             <Button variant="contained" color="primary" component={LinkRoute} to='/firm' >
