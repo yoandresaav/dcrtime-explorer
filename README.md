@@ -7,6 +7,10 @@ Dcrtime Explorer
 **Dcrtime Explorer es una aplicación que permite firmar, registrar y verificar la existencia de archivos digitales en la cadena de bloques de Decred. Inspirado y desarrollado sobre Dcrtime. Un servicio que permite hacer sellado genérico de tiempo. La novedad radica en agregar un sistema de firma digital y un verificador de hash.**  
 Este proyecto fue creado en el marco del evento Blockchain Learning Challenge Latinoamerica 2020.
 
+## Live
+
+Si desea ver el proyecto en funcionamiento [Dcrtime Explorer](https://dcrtime-explorer.herokuapp.com/) 
+
 ## Detalles Técnicos
 
 - Este servicio, dcrtime and Decred usan la función hash sha256.
@@ -23,11 +27,11 @@ Este proyecto fue creado en el marco del evento Blockchain Learning Challenge La
 - git 2.28.0 o superior.
 - yarn 1.22.4
 ## Pasos de instalación
-
-- git clone https://github.com/yoandresaav/dcrtime-explorer.git
-- yarn install
-- yarn run start
-
+```bash
+git clone https://github.com/yoandresaav/dcrtime-explorer.git
+yarn install
+yarn run start
+```
 ## Recomendaciones a seguir desarrollando
 
 - Incrustar el Archivo de Verificación en el archivo.
