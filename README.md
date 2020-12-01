@@ -40,4 +40,5 @@ yarn run start
 ## Preview
 
 Vista de la pantalla de comprobar el Archivo de Verificación.
+
 ![](/preview.png)
