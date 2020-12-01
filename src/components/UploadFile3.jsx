@@ -7,6 +7,8 @@ import ItemFile from '../components/ItemFile'
 import {createDigest} from '../helpers/api-decred';
 import {bytesToSize} from '../helpers/utils-file';
 import {baseStyle, activeStyle, acceptStyle, rejectStyle, containerStyle} from '../helpers/styles-uploads';
+import BackupOutlinedIcon from '@material-ui/icons/BackupOutlined';
+
 
 const styleTextLong = {
   overflow: "hidden", 
@@ -61,6 +63,7 @@ const UploadFile3 = ({ files, updateForm }) => {
       <div {...getRootProps({style})}>
         <input {...getInputProps()} />
         <p>Arraste el(los) archivo(s), o click para seleccionar un fichero</p>
+        <BackupOutlinedIcon style={{fontSize: 60 }}/>
       </div>
       {(files.length > 0) &&<aside>
         <h4>Archivos</h4>

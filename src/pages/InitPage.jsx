@@ -6,6 +6,7 @@ import 'fontsource-roboto';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import {Link as LinkRoute} from 'react-router-dom'
+import LandingIconos from '../components/LandingIconos';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,19 +60,22 @@ const InitPage = () => {
       <Grid item className={clsx(classes.root, classes.margin)}>
         <Card className={clsx(classes.margin, classes.root, classes.card)}>
           <Typography variant="h5" component="h5" className={clsx(classes.title)}>
-           Firma y Registra tus activos digitales en Decred
+           Firma y Registra archivos digitales en Decred
           </Typography>
           <Typography component="p" className={classes.document}>
-            Dcrtime Explorer es una aplicación que permite firmar, registrar y verificar la existencia de activos digitales en la cadena de bloques de Decred. Inspirado y desarrollado sobre Dcrtime. Un servicio que permite hacer sellado genérico de tiempo. <Link href="https://docs.decred.org/advanced/dcrtime/">Dcrtime</Link>
+            Dcrtime Explorer es una aplicación que permite firmar, registrar y verificar la existencia de archivos digitales en la cadena de bloques de Decred. Inspirado y desarrollado sobre <Link href="https://docs.decred.org/advanced/dcrtime/">Dcrtime</Link>. Un servicio que permite hacer sellado genérico de tiempo. La novedad radica en agregar un sistema de firma digital y un verificador de hash que actualmente no tiene Dcrtime.
           </Typography>
           <Typography component="p" className={classes.document}>
-            Esta aplicación permite generar las <strong>claves públicas y privadas</strong> para firmar los ficheros. Las claves pueden volverse a usar para firmar en el futuro.
+            Esta aplicación generara <strong>claves públicas y privadas</strong> usadas para firmar ficheros. <strong>Descargue estas claves y guardelas en un lugar seguro. </strong>Las claves pueden volverse a usar para firmar. Y para verificar la autenticidad del firmante.
           </Typography>
           <Typography component="p" className={classes.document}>
-            Además permitimos verificar que los activos digitales se encuentran anclados en la cadena de bloques de Decred. Recuperando la transacción donde se encuentra el hash para ser verificados en el mismo explorador de bloques de Decred.
+          Se permite la verificación del anclaje de los activos digitales en la cadena de bloques de Decred mediante la transacción.
           </Typography>
+          
+          <LandingIconos />
+
           <Typography component="p" className={classes.document}>
-            El resultado de la firma es un documento de texto en formato json que almacena algunos datos del fichero, los hash firmados y una copia de la llave pública. Este fichero se descarga y sirve en el proceso de verificación. Para comprobar que <strong>usted firmó</strong> el archivo provea una copia del archivo json generado. 
+            La <strong>Prueba de Firmado</strong> almacena algunos datos del archivo original, hash firmados y una copia de la llave pública. Este fichero se debe descargar y usar en el proceso de verificación. Distribuya la Prueba de Firmado para que se reconozca su autoria.
           </Typography>
           <Grid item className={clsx(classes.gridBtn)} >
             <Button variant="contained" color="primary" component={LinkRoute} to='/firm' >

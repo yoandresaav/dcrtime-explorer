@@ -2,6 +2,8 @@ import React, {useMemo} from 'react';
 import {useDropzone} from 'react-dropzone';
 import {baseStyle, activeStyle, acceptStyle, rejectStyle, containerStyle} from '../helpers/styles-uploads';
 import {getFileData} from '../helpers/utils-file';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+
 
 const UploadPublicKey = ({setUserPrivateKey}) => {
 
@@ -46,6 +48,7 @@ const UploadPublicKey = ({setUserPrivateKey}) => {
       <div {...getRootProps({style})}>
         <input {...getInputProps()} />
         <p>Arraste tu clave Publica PEM o click para seleccionarla</p>
+        <VpnKeyIcon  style={{ fontSize: 60 }} />
       </div>
     </section>
   )

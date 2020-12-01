@@ -60,7 +60,7 @@ const PanelFinish = ({data, propsKey}) => {
     <Grid container direction="column" alignItems="center" justify="center">
       <Grid item className={clsx(classes.instruction, classes.root)}>
         <Typography variant="h4" color="textSecondary" component="h4" className={classes.title}>
-          Tu documento se está guardando
+          Tu fichero se está guardando
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="p" className={classes.subtitle}>

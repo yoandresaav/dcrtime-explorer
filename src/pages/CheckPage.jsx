@@ -88,7 +88,7 @@ const CheckPage = (props) => {
             Prueba de existencia
           </Typography>
           <Typography component="p" className={classes.document}>
-            Comprueba que el hash firmado de un documento se encuentra anclado en la blockchain de Decred. Recuerda que necesitas un hash256 de 64 caracteres de longitud.
+            Comprueba que el hash firmado de un archivo se encuentra anclado en la blockchain de Decred. Recuerda que necesitas un sha256 de 64 caracteres de longitud.
           </Typography>
             {result && result.map((res, index) => (
               <div key={index} className={classes.large}>

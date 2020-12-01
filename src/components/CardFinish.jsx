@@ -8,6 +8,8 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Tooltip from '@material-ui/core/Tooltip';
 import {downloadJson} from '../helpers/utils-file';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +55,13 @@ const useStyles = makeStyles((theme) => ({
   margins: {
     marginTop: 20,
     outline: 'none',
+  },
+  important: {
+    color: 'red',
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'inline-block',
+    },
   }
 }));
 
@@ -60,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
 const CardFinish = ({file, pemPublic}) => {
 
   const classes = useStyles()
-  console.log(file)
   
   const generateJson = () => {
     const document = JSON.stringify({
@@ -82,11 +90,17 @@ const CardFinish = ({file, pemPublic}) => {
         title={ `Archivo: ${file.name}` }
         subheader={bytesToSize(file.size)}
         action={
-          <Tooltip title="json format">
-            <IconButton aria-label="download json format" onClick={generateJson}>
-              <GetAppIcon />
-            </IconButton>
-          </Tooltip>
+          <div>
+            <span className={classes.important}>
+              Importante Descarga la Prueba de Firmado
+            </span>
+            <Tooltip title="Prueba de Firmado">
+              <IconButton aria-label="download json format" onClick={generateJson}>
+                <GetAppIcon />
+              </IconButton>
+            </Tooltip>
+
+          </div>
         }
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -97,7 +111,7 @@ const CardFinish = ({file, pemPublic}) => {
       <CardContent>
         <TextField
           disabled={true}
-          label="Digest del Documento"
+          label="Digest del Archivo"
           variant="outlined"
           fullWidth
           defaultValue={file.digestOriginal}
@@ -105,7 +119,7 @@ const CardFinish = ({file, pemPublic}) => {
         />
         <TextField
           disabled={true}
-          label="Digest Firmado del Documento"
+          label="Digest Firmado del Archivo"
           variant="outlined"
           fullWidth
           defaultValue={file.digestFirmed || 'Sin digest firmado'}
@@ -113,7 +127,7 @@ const CardFinish = ({file, pemPublic}) => {
         />
         <TextField 
           disabled={true}
-          label="Documento Firmado"
+          label="Archivo Firmado"
           rows={8}
           variant="outlined"
           multiline

@@ -3,7 +3,7 @@ import {useDropzone} from 'react-dropzone';
 import {baseStyle, activeStyle, acceptStyle, rejectStyle, containerStyle} from '../helpers/styles-uploads';
 import {getFileData} from '../helpers/utils-file';
 import {importPrivateKey, exportPrivateCryptoKey, exportPublicCryptoKey} from '../helpers/utils-keys';
-
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 const UploadPrivateKey = ({userPrivateKey, setUserPrivateKey}) => {
 
@@ -48,6 +48,7 @@ const UploadPrivateKey = ({userPrivateKey, setUserPrivateKey}) => {
       <div {...getRootProps({style})}>
         <input {...getInputProps()} />
         <p>Arraste tu clave Privada PEM o click para seleccionarla</p>
+        <VpnKeyIcon  style={{ fontSize: 60 }} />
       </div>
     </section>
   )

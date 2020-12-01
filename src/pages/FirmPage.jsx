@@ -87,8 +87,8 @@ const FirmPage = () => {
       email: '',
       titulo: 'LibroEjemplo.pdf',
       size: 'en megabyte',
-      digestFirmed: 'Digest del documento firmado con la clave privada',
-      digestOriginal: 'Digest del documento sin firmar',
+      digestFirmed: 'Digest del fichero firmado con la clave privada',
+      digestOriginal: 'Digest del fichero sin firmar',
     })
     let response = null;
     try {

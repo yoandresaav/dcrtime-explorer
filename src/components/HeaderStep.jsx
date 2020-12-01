@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(2),
   },
   buttonDiv: {
     marginTop: theme.spacing(1),
@@ -98,7 +99,7 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
         {activeStep === steps.length ? (
           <div>
             <PanelFinish data={data} propsKey={propsKey} />
-            <Button onClick={handleReset} className={classes.button}>
+            <Button onClick={handleReset} className={classes.button} variant="contained" color="primary" disableElevation>
               Firmar otros
             </Button>
           </div>

@@ -89,7 +89,7 @@ const ListaVerificate = ({verificateProcess, responseDecred}) => {
             <AssignmentIcon />
           </ListItemIcon>
           <ListItemText
-            primary="Comprobando la firma del documento"
+            primary="Comprobando la firma del archivo"
             secondary={ verificateProcess.isValidFirmedDigest ? "Comprobado" : "Incorrecto"}
           />
           {ShowIcon(verificateProcess.isValidFirmedDigest)}

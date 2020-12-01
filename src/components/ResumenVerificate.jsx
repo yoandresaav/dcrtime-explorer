@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     overflow: "hidden", 
     textOverflow: "ellipsis", 
-    width: '20rem',
+    width: '18rem',
     [theme.breakpoints.up('sm')]: {
       width: '100%',
     },
@@ -32,8 +32,12 @@ const ResumenVerificate = ({checkedInfo}) => {
       <Typography component="h4">
         Tamaño: {sizeHuman}
       </Typography>
-      <TypoVeryLarge title={digestOriginal} />
-      <TypoVeryLarge title={digestFirmed} />
+      <br />
+      <Typography component="h4">
+        Hash verificados
+      </Typography>
+      <TypoVeryLarge title={`original: ${digestOriginal}`} />
+      <TypoVeryLarge title={`firmado: ${digestFirmed}`} />
     </div>
   )
 }

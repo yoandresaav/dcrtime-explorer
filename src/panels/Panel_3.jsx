@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Tooltip, FormControl, TextField, IconButton } from '@material-ui/core';
@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  important: {
+    paddingTop: 13,
+    color: 'red',
+  }
 }));
 
 
@@ -90,20 +94,21 @@ const Panel_3 = ({propsKey}) => {
           <div className={classes.grow} />
             {/* Dowload Icon */}
             {(propsKey.storeKey.pemPrivate && propsKey.storeKey.pemPublic && propsKey.useGenerateKey) &&
-              <Tooltip title="Descargar Zip Llaves">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={onDownloadClick}
-                >
-                  <GetAppIcon />
-                </IconButton>
-              </Tooltip>}
+              <Fragment>
+                <span className={classes.important}>Importante Descarga y Guarda Seguro las Llaves</span>
+                <Tooltip title="Descargar Zip Llaves">
+                  <IconButton
+                    onClick={onDownloadClick}
+                  >
+                    <GetAppIcon />
+                  </IconButton>
+                </Tooltip>
+              </Fragment>}
           
             {/* Visibility Eyes */}
             {(propsKey.storeKey.pemPrivate) && 
               <Tooltip title={showKey ? "Hide" : "Show"}>
                 <IconButton
-                  aria-label="toggle password visibility"
                   onClick={handleClickShowKey}
                 >
                   {showKey ? <Visibility /> : <VisibilityOff />}
@@ -115,7 +120,6 @@ const Panel_3 = ({propsKey}) => {
             {(propsKey.storeKey.pemPrivate && propsKey.storeKey.pemPublic) &&
               <Tooltip title="Clear">
                 <IconButton
-                  aria-label="clear keys"
                   onClick={onClear}
                 >
                   <HighlightOffIcon /> 

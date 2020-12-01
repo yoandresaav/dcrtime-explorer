@@ -149,7 +149,7 @@ export default function PrimarySearchAppBar() {
         <p>Inicio</p>
       </MenuItem>
       <MenuItem component={Link} to='/firm'>
-        <IconButton aria-label="firmar documentos" color="inherit" >
+        <IconButton aria-label="firmar archivos" color="inherit" >
           <BorderColorIcon />
         </IconButton>
         <p>Firmar archivos</p>
@@ -198,7 +198,7 @@ export default function PrimarySearchAppBar() {
               </IconButton>
             </Tooltip>
             <Tooltip title="Firmar">
-              <IconButton aria-label="firmar documentos" color="inherit" component={Link} to='/firm'>
+              <IconButton aria-label="firmar archivos" color="inherit" component={Link} to='/firm'>
                 <BorderColorIcon />
               </IconButton>
             </Tooltip>

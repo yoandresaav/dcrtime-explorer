@@ -1,7 +1,8 @@
 import React, { useMemo, Fragment } from 'react';
 import {useDropzone} from 'react-dropzone';
-
 import {baseStyle, activeStyle, acceptStyle, rejectStyle, containerStyle} from '../helpers/styles-uploads';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+
 
 const UploadComprobateJson = ({saveFile}) => {
 
@@ -36,7 +37,8 @@ const UploadComprobateJson = ({saveFile}) => {
       <section className="container" style={containerStyle}>
         <div {...getRootProps({style})}>
           <input {...getInputProps()} />
-          <p>Arraste el(los) archivo(s), o click para seleccionar un fichero verificable</p>
+          <p>Arraste o click para seleccionar una Prueba de Firmado</p>
+          <AssignmentTurnedInIcon  style={{fontSize: 60}} />
         </div>
       </section>
     </Fragment>

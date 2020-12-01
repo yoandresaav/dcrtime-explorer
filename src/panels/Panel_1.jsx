@@ -35,7 +35,7 @@ const Panel_1 = ({data, updateForm}) => {
             Correo de notificación
           </Typography>
           <Typography variant="subtitle1" className={classes.parraf}>
-            Introduce tu correo para recibir una notificacion cuando el documento firmado ya este en la cadena de bloques de Decred.
+            Introduce tu correo para recibir una notificacion cuando el fichero firmado ya este en la cadena de bloques de Decred.
           </Typography>
         <EmailInput data={data} updateForm={updateForm} />
       </Grid>
