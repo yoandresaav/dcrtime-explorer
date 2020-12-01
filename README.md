@@ -36,3 +36,8 @@ yarn run start
 
 - Incrustar el Archivo de Verificación en el archivo.
 - Desarrollar un servicio de custodia de documentos, claves y Pruebas de Firmado.
+
+## Preview
+
+Vista de la pantalla de comprobar el Archivo de Verificación.
+![](/preview.png)
