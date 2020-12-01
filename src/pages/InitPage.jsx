@@ -63,7 +63,7 @@ const InitPage = () => {
            Firma y Registra archivos digitales en Decred
           </Typography>
           <Typography component="p" className={classes.document}>
-            Dcrtime Explorer es una aplicación que permite firmar, registrar y verificar la existencia de archivos digitales en la cadena de bloques de Decred. Inspirado y desarrollado sobre <Link href="https://docs.decred.org/advanced/dcrtime/">Dcrtime</Link>. Un servicio que permite hacer sellado genérico de tiempo. La novedad radica en agregar un sistema de firma digital y un verificador de hash que actualmente no tiene Dcrtime.
+            Dcrtime Explorer es una aplicación que permite firmar, registrar y verificar la existencia de archivos digitales en la cadena de bloques de Decred. Inspirado y desarrollado sobre <Link href="https://docs.decred.org/advanced/dcrtime/">Dcrtime</Link>. Un servicio que permite hacer sellado genérico de tiempo. La novedad radica en agregar un sistema de firma digital y un verificador de hash.
           </Typography>
           <Typography component="p" className={classes.document}>
             Esta aplicación generara <strong>claves públicas y privadas</strong> usadas para firmar ficheros. <strong>Descargue estas claves y guardelas en un lugar seguro. </strong>Las claves pueden volverse a usar para firmar. Y para verificar la autenticidad del firmante.
