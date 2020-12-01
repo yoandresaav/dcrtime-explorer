@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   subtitle: {
-    fontSize: 20,
-    paddingTop: 10,
+    fontSize: 18,
+    paddingTop: 30,
     paddingBottom: 20,
   },
   card: {
@@ -64,12 +64,14 @@ const PanelFinish = ({data, propsKey}) => {
         </Typography>
 
         <Typography variant="body2" color="textSecondary" component="p" className={classes.subtitle}>
-          Recibirás un correo con los datos cuando tu documento ya este registrado
+          El proceso de anclado en la blockchain de Decred demora por lo general unos 30 minutos.
         </Typography>
 
-        <Typography variant="body1" color="textSecondary" component="p">
-          Email: {data.email}
-        </Typography>
+        {(!!data.mail) &&
+          <Typography variant="body1" color="textSecondary" component="p">
+            Email: {data.email}
+          </Typography>
+        }
 
         {/* Card  */}
         {data.files.map((file, index) => (

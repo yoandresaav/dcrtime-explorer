@@ -62,13 +62,16 @@ const InitPage = () => {
            Firma y Registra tus activos digitales en Decred
           </Typography>
           <Typography component="p" className={classes.document}>
-            Dcrtime Explorer es un servicio que permite firmar y registrar activos digitales en la cadena de bloques de Decred. Inspirado y desarrollado sobre Dcrtime. Un servicio que permite hacer sellado genérico de tiempo. <Link href="https://docs.decred.org/advanced/dcrtime/">Dcrtime</Link>
+            Dcrtime Explorer es una aplicación que permite firmar, registrar y verificar la existencia de activos digitales en la cadena de bloques de Decred. Inspirado y desarrollado sobre Dcrtime. Un servicio que permite hacer sellado genérico de tiempo. <Link href="https://docs.decred.org/advanced/dcrtime/">Dcrtime</Link>
           </Typography>
           <Typography component="p" className={classes.document}>
-            Este servicio permite generar las claves públicas y privadas para firmar los documentos.
+            Esta aplicación permite generar las <strong>claves públicas y privadas</strong> para para firmar los documentos. Las claves pueden volverse a usar para firmar otros ficheros.
           </Typography>
           <Typography component="p" className={classes.document}>
-            Además permitimos verificar que los activos digitales ya se encuentran en la cadena de bloques de Decred. Recuperando la transacción donde se encuentra el hash para ser verificados en el mismo explorador de bloques de Decred.
+            Además permitimos verificar que los activos digitales se encuentran anclados en la cadena de bloques de Decred. Recuperando la transacción donde se encuentra el hash para ser verificados en el mismo explorador de bloques de Decred.
+          </Typography>
+          <Typography component="p" className={classes.document}>
+            El resultado de la firma es un documento de texto en formato json que almacena algunos datos del fichero, los hash firmados y una copia de la llave pública. Este fichero se descarga y sirve en el proceso de verificación. Para comprobar que <strong>usted firmó</strong> el archivo provea una copia del archivo json generado. 
           </Typography>
           <Grid item className={clsx(classes.gridBtn)} >
             <Button variant="contained" color="primary" component={LinkRoute} to='/firm' >
