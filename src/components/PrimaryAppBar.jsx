@@ -179,7 +179,7 @@ export default function PrimarySearchAppBar() {
               }
             </div>
             <InputBase
-              placeholder="Search key…"
+              placeholder="Verifica tu hash"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
