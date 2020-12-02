@@ -8,7 +8,6 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import Tooltip from '@material-ui/core/Tooltip';
 import {downloadJson} from '../helpers/utils-file';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 
 
 const useStyles = makeStyles((theme) => ({

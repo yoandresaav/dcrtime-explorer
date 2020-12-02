@@ -1,5 +1,5 @@
 import JSZip from "jszip";
-import {signData, str2ab} from './utils-keys';
+import {signData} from './utils-keys';
 import {digestPayload} from '../helpers/api-decred';
 
 // util function
@@ -39,7 +39,7 @@ export const generateZip = async (privateFile, publicFile) => {
 // Show Size in human format
 export const bytesToSize = (bytes) => {
   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-  if (bytes == 0) return '0 Byte';
+  if (bytes === 0) return '0 Byte';
   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
 }

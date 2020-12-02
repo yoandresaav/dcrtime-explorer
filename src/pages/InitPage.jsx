@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     padding: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
-      margin: theme.spacing(3),
+      margin: theme.spacing(1),
     },
   },
   title: {

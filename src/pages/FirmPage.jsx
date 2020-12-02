@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     margin: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
-      margin: theme.spacing(3),
+      margin: theme.spacing(1),
     },
   },
 }));
@@ -76,8 +76,8 @@ const FirmPage = () => {
     if (allDigest.length === 0){
       alert('No f.digestFirmed')
     }
-    const res =  await sendDigestToDecred(allDigest)
-    return 
+    await sendDigestToDecred(allDigest);
+    return;
   }
 
   const createTask = async () => {
@@ -89,10 +89,8 @@ const FirmPage = () => {
       digestFirmed: 'Digest del fichero firmado con la clave privada',
       digestOriginal: 'Digest del fichero sin firmar',
     })
-    let response = null;
     try {
-       response = await axios.post(url, json);
-      
+       await axios.post(url, json);
     } catch (error) {
       console.error();
       return;

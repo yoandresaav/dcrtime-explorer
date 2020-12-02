@@ -1,6 +1,7 @@
 import dcrtime from "dcrtimejs";
 
-dcrtime.setNetwork('mainnet'); //process.env.REACT_APP_NETWORK change => testnet
+dcrtime.setNetwork(process.env.REACT_APP_DCRTIME_NETWORK || 'mainnet');
+
 export const digestPayload = dcrtime.getSHA256fromBase64;
 
 export const createDigest = file => {

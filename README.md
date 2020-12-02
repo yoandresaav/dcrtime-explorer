@@ -30,7 +30,8 @@ Si desea ver el proyecto en funcionamiento [Dcrtime Explorer](https://dcrtime-ex
 ```bash
 git clone https://github.com/yoandresaav/dcrtime-explorer.git
 yarn install
-yarn run start
+yarn run start (to run in mainnet)
+yarn run start-test (to run in testnet)
 ```
 ## Recomendaciones a seguir desarrollando
 

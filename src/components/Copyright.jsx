@@ -6,11 +6,15 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(2),
+  },
+  connected: {
+    textTransform: 'capitalize',
   }
 }));
 
 const Copyright = () => {
   const classes = useStyles()
+  const connected = process.env.REACT_APP_DCRTIME_NETWORK || 'mainnet'
   return (
     <Typography variant="body2" color="textSecondary" align="center" className={classes.root}>
       {'Copyright © '}
@@ -19,6 +23,7 @@ const Copyright = () => {
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
+      Connected to <span className={classes.connected} >{connected}</span>.
     </Typography>
   )
 }

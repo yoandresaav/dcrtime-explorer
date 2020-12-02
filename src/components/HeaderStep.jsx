@@ -72,7 +72,7 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
     }
 
     // check if keys exist
-    if (activeStep == PREV_PAGE_FIRM && (propsKey.storeKey.key === null || propsKey.storeKey.pemPublic === '' )){
+    if (activeStep === PREV_PAGE_FIRM && (propsKey.storeKey.key === null || propsKey.storeKey.pemPublic === '' )){
       setOnError(); return;
     }
 
