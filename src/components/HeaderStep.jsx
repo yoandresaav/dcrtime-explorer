@@ -105,7 +105,7 @@ const HeaderStep = ({data, updateForm, propsKey, onLastStep, resetData}) => {
       case 2:
         return <Panel_3  errors ={errors} propsKey={propsKey} />;
       default:
-        return 'Unknown step';
+        return 'Ha ocurrido un error';
     }
   }
 

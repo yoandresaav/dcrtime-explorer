@@ -79,6 +79,7 @@ const VerificatePage = () => {
   const classes = useStyles();
 
   const [checkedInfo, setCheckedInfo] = useState({
+    "title": "",
     "name": "",
     "digestOriginal": "",
     "digestFirmed": "",

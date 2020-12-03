@@ -19,17 +19,20 @@ const ResumenVerificate = ({checkedInfo}) => {
 
 
   const classes = useStyles();
+  const {name, sizeHuman, digestFirmed, digestOriginal, title} = checkedInfo;
 
-  const {name, sizeHuman, digestFirmed, digestOriginal} = checkedInfo;
   return (
     <div className={classes.root}>
-      <Typography component="h4" variant="h5">
+      <Typography component="h4" variant="h5" style={{ paddingBottom: 4, color: '#8c8787' }}>
         Resumen
       </Typography>
       <Typography component="h4">
+        Titulo: {title || 'No se encontró un titulo'}
+      </Typography>
+      <Typography component="h4" >
         Archivo: {name}
       </Typography>
-      <Typography component="h4">
+      <Typography component="h4" style={{ color: '#8c8787' }}>
         Tamaño: {sizeHuman}
       </Typography>
       <br />

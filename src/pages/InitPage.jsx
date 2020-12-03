@@ -1,8 +1,8 @@
 import React from 'react'
 import clsx from 'clsx';
+import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
 import { Grid, Button, Link } from '@material-ui/core';
-import 'fontsource-roboto';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import {Link as LinkRoute} from 'react-router-dom'

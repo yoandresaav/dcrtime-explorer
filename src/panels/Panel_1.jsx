@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     textAlign: 'center',
     color: 'gray',
-    paddingBottom: theme.spacing(3),
+    paddingBottom: theme.spacing(5),
   },
   parraf: {
     paddingBottom: theme.spacing(2),
@@ -32,10 +32,10 @@ const Panel_1 = ({data, updateForm}) => {
     <Grid container direction="column" alignItems="center" justify="center" >
       <Grid item className={clsx(classes.root, classes.margin)}>
           <Typography variant="h4" component="h3" className={classes.title}>
-            Correo de notificación
+            Título del Documento
           </Typography>
           <Typography variant="subtitle1" className={classes.parraf}>
-            Introduce tu correo para recibir una notificacion cuando el fichero firmado ya este en la cadena de bloques de Decred.
+            Introduce un texto para identificar mejor tus archivos digitales. Este se incluirá en la <strong>Prueba de Firmado</strong> y se muestra en el proceso de verificación. El titulo es opcional.
           </Typography>
         <EmailInput data={data} updateForm={updateForm} />
       </Grid>

@@ -43,3 +43,7 @@ yarn run start-test (to run in testnet)
 Vista de la pantalla de comprobar el Archivo de Verificación.
 
 ![](/preview.png)
+
+## Notas
+
+Incluir notas aqui

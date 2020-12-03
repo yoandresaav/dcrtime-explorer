@@ -65,12 +65,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const CardFinish = ({file, pemPublic}) => {
+const CardFinish = ({file, pemPublic, data}) => {
 
   const classes = useStyles()
+  console.log('Data is ', data)
   
   const generateJson = () => {
     const document = JSON.stringify({
+      title: data.title,
       name: file.name,
       digestOriginal: file.digestOriginal,
       digestFirmed: file.digestFirmed,

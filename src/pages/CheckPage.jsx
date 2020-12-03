@@ -115,7 +115,7 @@ const CheckPage = (props) => {
       <Notification 
         open={openBadDigest}
         onClose={handleCloseBadDigest}
-        message={'No es un digest válido'}
+        message={'No es un hash válido'}
         severity={"error"}
       />
     </Grid>

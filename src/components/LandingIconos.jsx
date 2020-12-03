@@ -45,7 +45,7 @@ const LandingIconos = () => {
                 </div>
               </Paper>
               <Typography variant="subtitle1" className={classes.subtitle}>
-                  Sube un Archivo
+                  Sube los Archivos <br /> que deseas registrar
                 </Typography>
             </Grid>
 
@@ -67,7 +67,7 @@ const LandingIconos = () => {
                 </div>
               </Paper>
               <Typography variant="subtitle1" className={classes.subtitle}>
-                  Verifica las firmas
+                  Verifica las firmas <br /> en la blockchain Decred
                 </Typography>
             </Grid>
         </Grid>

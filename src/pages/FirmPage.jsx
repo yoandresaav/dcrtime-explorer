@@ -5,7 +5,6 @@ import 'fontsource-roboto';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import {firmFiles} from '../helpers/utils-file';
-import axios from 'axios';
 import HeaderStep from '../components/HeaderStep';
 import {sendDigestToDecred} from '../helpers/api-decred';
 
@@ -14,12 +13,15 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+    maxWidth: '110ch',
+    padding: theme.spacing(3),
+    minHeight: '80ch',
   },
   margin: {
     padding: theme.spacing(1),
     margin: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
-      margin: theme.spacing(1),
+      margin: theme.spacing(3),
     },
   },
 }));
@@ -31,7 +33,7 @@ const initialKeyValue = {
 }
 
 const initialState = {
-  email: '',
+  title: '',
   files: [],
 }
 
@@ -80,23 +82,6 @@ const FirmPage = () => {
     return;
   }
 
-  const createTask = async () => {
-    const url = 'http://url';
-    const json = JSON.stringify({
-      email: '',
-      titulo: 'LibroEjemplo.pdf',
-      size: 'en megabyte',
-      digestFirmed: 'Digest del fichero firmado con la clave privada',
-      digestOriginal: 'Digest del fichero sin firmar',
-    })
-    try {
-       await axios.post(url, json);
-    } catch (error) {
-      console.error();
-      return;
-    }
-
-  }
 
   const resetData = () => {
     setData(initialState)

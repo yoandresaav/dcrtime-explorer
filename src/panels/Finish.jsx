@@ -78,6 +78,7 @@ const PanelFinish = ({data, propsKey}) => {
           <CardFinish 
             key={index}
             file={file}
+            data={data}
             pemPublic={pemPublic}
           />
         ))}
