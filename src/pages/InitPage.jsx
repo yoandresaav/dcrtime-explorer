@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   }, 
   document: {
     color: 'gray',
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
     fontSize: 18,
   },
@@ -66,10 +66,10 @@ const InitPage = () => {
             Dcrtime Explorer es una aplicación que permite firmar, registrar y verificar la existencia de archivos digitales en la cadena de bloques de Decred. Inspirado y desarrollado sobre <Link href="https://docs.decred.org/advanced/dcrtime/">Dcrtime</Link>. Un servicio que permite hacer sellado genérico de tiempo. La novedad radica en agregar un sistema de firma digital y un verificador de hash.
           </Typography>
           <Typography component="p" className={classes.document}>
-            Esta aplicación generara <strong>claves públicas y privadas</strong> usadas para firmar ficheros. <strong>Descargue estas claves y guardelas en un lugar seguro. </strong>Las claves pueden volverse a usar para firmar. Y para verificar la autenticidad del firmante.
+            Esta aplicación generara <strong>claves públicas y privadas</strong> usadas para firmar ficheros. <strong> Es importante que descargue estas claves y las mantenga en un lugar seguro. </strong> Las claves son suyas y pueden volverse a usar para firmar otros archivos. Además para verificar la autenticidad del firmante.
           </Typography>
           <Typography component="p" className={classes.document}>
-          Se permite la verificación del anclaje de los activos digitales en la cadena de bloques de Decred mediante la transacción.
+            Hacemos la verificación del anclaje de los activos digitales en la cadena de bloques de Decred consultando la transacción donde se encuentra la raíz de Merkle.
           </Typography>
           
           <LandingIconos />
