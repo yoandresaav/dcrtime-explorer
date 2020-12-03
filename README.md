@@ -3,7 +3,7 @@ Dcrtime Explorer
 
 [![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 
-## Resumen
+## Summary
 
 **Dcrtime Explorer is an application that allows you to sign, register and verify the existence of digital files in the Decred block chain. Inspired and developed on Dcrtime. A service that allows to make generic time stamping. The novelty lies in adding a digital signature system and a hash verifier.**  
 This project was created within the Blockchain Learning Challenge Latinoamerica 2020 event.
@@ -49,7 +49,7 @@ View of the check file screen.
 
 ## Note
 
-Waiting 30 minutes can be a long time to test the verification system. You can use this pre-signed file for testing. ![Verify File](/Firmed-0.jpeg.json)
+Waiting 30 minutes can be a long time to test the verification system. You can use this pre-signed file for testing. [Verify File](/Firmed-0.jpeg.json)
 
 ## Meme Explainer
 
