@@ -20,7 +20,7 @@ If you have any problem the first time you access please reload the page . [Hero
 [dcrtime](https://github.com/decred/dcrtime) as a backend to save and anchor the signed hashes of the files.
 - This application uses [dcrtimejs](https://github.com/tiagoalvesdulce/dcrtimejs) to communicate with dcrtime's APIS.
 - Private and public keys are generated using native cryptographic libraries of the browsers [Crypto](https://developer.mozilla.org/es/docs/Web/API/Crypto).
-- The signature service uses the RSA-PSS algorithm to generate the keys [Ejemplo](https://github.com/diafygi/webcrypto-examples#rsa-pss).
+- The signature service uses the RSA-PSS algorithm to generate the keys [Example](https://github.com/diafygi/webcrypto-examples#rsa-pss).
 - Its development was based on [Create React App](https://github.com/facebook/create-react-app) and [Material-UI](https://material-ui.com/).
 
 ## Requirements
