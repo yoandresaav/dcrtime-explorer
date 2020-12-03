@@ -4,46 +4,55 @@ Dcrtime Explorer
 [![ISC License](https://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 
 ## Resumen
-**Dcrtime Explorer es una aplicación que permite firmar, registrar y verificar la existencia de archivos digitales en la cadena de bloques de Decred. Inspirado y desarrollado sobre Dcrtime. Un servicio que permite hacer sellado genérico de tiempo. La novedad radica en agregar un sistema de firma digital y un verificador de hash.**  
-Este proyecto fue creado en el marco del evento Blockchain Learning Challenge Latinoamerica 2020.
+
+**Dcrtime Explorer is an application that allows you to sign, register and verify the existence of digital files in the Decred block chain. Inspired and developed on Dcrtime. A service that allows to make generic time stamping. The novelty lies in adding a digital signature system and a hash verifier.**  
+This project was created within the Blockchain Learning Challenge Latinoamerica 2020 event.
 
 ## Demo
 
-Si desea ver el proyecto en funcionamiento [Dcrtime Explorer](https://dcrtime-explorer.herokuapp.com/) 
+If you want to see the project in action [Dcrtime Explorer](https://dcrtime-explorer.herokuapp.com/).
+If you have any problem the first time you access please reload the page . [Heroku official note](https://devcenter.heroku.com/articles/dynos#dyno-sleeping)
 
-## Detalles Técnicos
+## Technical Details
 
-- Este servicio, dcrtime and Decred usan la función hash sha256.
-- **Los archivos no se guardan en un servidor**. Usamos 
-[dcrtime](https://github.com/decred/dcrtime) como backend para guardar y anclar los hash firmados de los archivos.
-- Esta aplicación usa [dcrtimejs](https://github.com/tiagoalvesdulce/dcrtimejs) para comunicarse con las APIS de dcrtime.
-- Las llaves privadas y públicas se generan usando librerias  criptográficas nativas de los navegadores [Crypto](https://developer.mozilla.org/es/docs/Web/API/Crypto).
-- El servicio de firmado usa el algoritmo RSA-PSS para generar las llaves [Ejemplo](https://github.com/diafygi/webcrypto-examples#rsa-pss).
-- Su desarrollo se basó en [Create React App](https://github.com/facebook/create-react-app).
+- This application, Dcrtime and Decred use the sha256 hash function.
+- **Files are not saved on a server**. This application uses 
+[dcrtime](https://github.com/decred/dcrtime) as a backend to save and anchor the signed hashes of the files.
+- This application uses [dcrtimejs](https://github.com/tiagoalvesdulce/dcrtimejs) to communicate with dcrtime's APIS.
+- Private and public keys are generated using native cryptographic libraries of the browsers [Crypto](https://developer.mozilla.org/es/docs/Web/API/Crypto).
+- The signature service uses the RSA-PSS algorithm to generate the keys [Ejemplo](https://github.com/diafygi/webcrypto-examples#rsa-pss).
+- Its development was based on [Create React App](https://github.com/facebook/create-react-app) and [Material-UI](https://material-ui.com/).
 
-## Requisitos
+## Requirements
 
-- node v12.1.0 o superior.
-- git 2.28.0 o superior.
-- yarn 1.22.4
-## Pasos de instalación
+- node v12.1.0 or greater.
+- git 2.28.0 or greater.
+- yarn 1.22.4 or greater
+## Installation steps
 ```bash
 git clone https://github.com/yoandresaav/dcrtime-explorer.git
 yarn install
 yarn run start (to run in mainnet)
 yarn run start-test (to run in testnet)
 ```
-## Recomendaciones a seguir desarrollando
+## Recommendations for further development
 
-- Incrustar el Archivo de Verificación en el archivo.
-- Desarrollar un servicio de custodia de documentos, claves y Pruebas de Firmado.
+- Embed the Verification File in metadata of generated file.
+- Develop a service for the custody of documents, keys and Signature Proofs.
+- Solve the problem of having to wait 30 minutes for the document to be anchored in the Decred blockchain.
 
 ## Preview
 
-Vista de la pantalla de comprobar el Archivo de Verificación.
+View of the check file screen.
 
 ![](/preview.png)
 
-## Notas
+## Note
 
-Incluir notas aqui
+Waiting 30 minutes can be a long time to test the verification system. You can use this pre-signed file for testing. ![Verify File](/Firmed-0.jpeg.json)
+
+## Meme Explainer
+
+Fun time
+
+![](/meme-dcrtime-explorer.png)
